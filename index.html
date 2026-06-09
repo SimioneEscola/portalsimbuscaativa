@@ -633,19 +633,19 @@ tbody tr:last-child td { border-bottom: none; }
 
 <!-- TABS -->
 <nav class="tabs-bar">
-  <button class="tab-btn active" onclick="showTab('registro', this)">
+  <button class="tab-btn active" onclick="showTab('registro')">
     ✏️ Novo Registro
   </button>
-  <button class="tab-btn" data-tab="historico" onclick="showTab('historico', this)">
+  <button class="tab-btn" onclick="showTab('historico')">
     📂 Histórico
   </button>
-  <button class="tab-btn" data-tab="dashboard" onclick="showTab('dashboard', this)">
+  <button class="tab-btn" onclick="showTab('dashboard')">
     📊 Dashboard
   </button>
-  <button class="tab-btn" data-tab="relatorio" onclick="showTab('relatorio', this)">
+  <button class="tab-btn" onclick="showTab('relatorio')">
     📄 Relatório Jurídico
   </button>
-  <button class="tab-btn" data-tab="cadastro" onclick="showTab('cadastro', this)">
+  <button class="tab-btn" onclick="showTab('cadastro')">
     ➕ Novo Aluno
   </button>
 </nav>
@@ -684,36 +684,59 @@ tbody tr:last-child td { border-bottom: none; }
         <label>Nome do Servidor *</label>
         <select id="servidorNome" onchange="updateServerBadge()">
           <option value="">Selecione o servidor...</option>
-          <option>Alex</option>
-          <option>Apoio</option>
-          <option>Claudinei Silva Da Conceicao Bispo</option>
-          <option>Cleusa Da Silva Salomao</option>
-          <option>Daniela</option>
-          <option>Edson Gomes</option>
-          <option>Elaine Francisca Rodrigues</option>
-          <option>Franciele</option>
-          <option>Gabriel Borlinck Figueiredo</option>
-          <option>Gisele</option>
-          <option>Guilherme</option>
-          <option>Jessica Amaral Dos Santos</option>
-          <option>Paulo Domingos Da Silva Pereira</option>
-          <option>Raffael</option>
-          <option>Renata</option>
-          <option>Ricardo</option>
-          <option>Ricardo Costa Dobrowisch</option>
-          <option>Rodrigo Alves Da Silva</option>
-          <option>Rosa</option>
-          <option>Rosangela</option>
-          <option>Sandra</option>
-          <option>Serginei Rigo De Urzedo</option>
-          <option>Silvana</option>
-          <option>Socorro</option>
-          <option>Solange</option>
-          <option>Tadeu Silvestre Da Silva</option>
-          <option>Valderlane Lucia Da Silva</option>
-          <option>Vanderleia Ricardo Da Silva</option>
-          <option>Ysmaylla Karamy De Moura Barbosa</option>
+          <option value="AMANDA IMAMURA RUSSO" data-rg="54893059">Amanda Imamura Russo</option>
+          <option value="ANA PAULA DOS SANTOS" data-rg="32519863">Ana Paula dos Santos</option>
+          <option value="ANDREIA BRANDAO BRAGA" data-rg="19436033">Andreia Brandao Braga</option>
+          <option value="ANGELO JOSE COSTA" data-rg="19952766">Angelo Jose Costa</option>
+          <option value="CARLOS PEREIRA DE SOUZA" data-rg="29266102">Carlos Pereira de Souza</option>
+          <option value="CIVALDO GUILHERME DA SILVA" data-rg="28447173">Civaldo Guilherme da Silva</option>
+          <option value="CLAUDINEI SILVA DA CONCEICAO BISPO" data-rg="36174783">Claudinei Silva da Conceicao Bispo</option>
+          <option value="CLEUSA DA SILVA SALOMAO" data-rg="10565537">Cleusa da Silva Salomao</option>
+          <option value="DANIELA RODRIGUES CAMARGO DE FREITAS" data-rg="43983819">Daniela Rodrigues Camargo de Freitas</option>
+          <option value="DIANA MARIA DA SILVA" data-rg="43789154">Diana Maria da Silva</option>
+          <option value="EDSON GOMES" data-rg="18086821">Edson Gomes</option>
+          <option value="EFIGENIA DO ROSARIO ARAUJO" data-rg="15730806">Efigenia do Rosario Araujo</option>
+          <option value="ELAINE FRANCISCA RODRIGUES" data-rg="29215354">Elaine Francisca Rodrigues</option>
+          <option value="ELIANA MACEDO DA MOTA CASTRO" data-rg="36434231">Eliana Macedo da Mota Castro</option>
+          <option value="FRANCIELE FERREIRA DOS SANTOS" data-rg="37188097">Franciele Ferreira dos Santos</option>
+          <option value="FRANCISCA ELIANE NUNES DA CRUZ" data-rg="27447770">Francisca Eliane Nunes da Cruz</option>
+          <option value="GABRIEL BORLINCK FIGUEIREDO" data-rg="39119147">Gabriel Borlinck Figueiredo</option>
+          <option value="GILSON SANTOS SILVA" data-rg="21913354">Gilson Santos Silva</option>
+          <option value="GISELE DE SOUZA GONCALVES" data-rg="25906363">Gisele de Souza Goncalves</option>
+          <option value="HELIO DA SILVA" data-rg="43767885">Helio da Silva</option>
+          <option value="JESSICA AMARAL DOS SANTOS" data-rg="44728401">Jessica Amaral dos Santos</option>
+          <option value="LIVIA CRISTIANE ALVES PEREIRA" data-rg="33429237">Livia Cristiane Alves Pereira</option>
+          <option value="LUCI MARY VENANCIO DE ANDRADE LIGASACCHI" data-rg="19391454">Luci Mary Venancio de Andrade Ligasacchi</option>
+          <option value="MARIA DO SOCORRO CASTRO VIEIRA PEREIRA DA SILVA" data-rg="34372420">Maria do Socorro Castro Vieira Pereira da Silva</option>
+          <option value="MARIA SOLANGE MARQUES CAMARGO" data-rg="6672489">Maria Solange Marques Camargo</option>
+          <option value="PAULO DOMINGOS DA SILVA PEREIRA" data-rg="17352678">Paulo Domingos da Silva Pereira</option>
+          <option value="RAFFAEL JOSE CHAGAS DE LIMA" data-rg="32635467">Raffael Jose Chagas de Lima</option>
+          <option value="RICARDO COSTA DOBROWISCH" data-rg="43347560">Ricardo Costa Dobrowisch</option>
+          <option value="RICARDO DA SILVA LOPES" data-rg="26895800">Ricardo da Silva Lopes</option>
+          <option value="RITA DE CASSIA FRANCA" data-rg="18967428">Rita de Cassia Franca</option>
+          <option value="RODRIGO ALVES DA SILVA" data-rg="49400214">Rodrigo Alves da Silva</option>
+          <option value="ROSA MARIA RIZZO MOREIRA DOS SANTOS" data-rg="5900854">Rosa Maria Rizzo Moreira dos Santos</option>
+          <option value="ROSANGELA PICCOLOMO" data-rg="14382299">Rosangela Piccolomo</option>
+          <option value="ROSELY DE OLIVEIRA GONCALVES SOUZA" data-rg="9374102">Rosely de Oliveira Goncalves Souza</option>
+          <option value="SANDRA MARIA GENEROSO" data-rg="16309468">Sandra Maria Generoso</option>
+          <option value="SANTANA ALVES DE MACEDO" data-rg="29841539">Santana Alves de Macedo</option>
+          <option value="SERGINEI RIGO DE URZEDO" data-rg="17899033">Serginei Rigo de Urzedo</option>
+          <option value="SILVANA RODRIGUES ARAUJO" data-rg="8369488">Silvana Rodrigues Araujo</option>
+          <option value="SILVIA CIRLENE PULTRINI" data-rg="21716972">Silvia Cirlene Pultrini</option>
+          <option value="SUELI MARIA DOS SANTOS ANJOS" data-rg="15192003">Sueli Maria dos Santos Anjos</option>
+          <option value="TADEU SILVESTRE DA SILVA" data-rg="21839088">Tadeu Silvestre da Silva</option>
+          <option value="VALDERLANE LUCIA DA SILVA" data-rg="36726929">Valderlane Lucia da Silva</option>
+          <option value="VANDERLEIA RICARDO DA SILVA" data-rg="30898447">Vanderleia Ricardo da Silva</option>
+          <option value="VERONICA CARVALHO GALAN" data-rg="37389578">Veronica Carvalho Galan</option>
+          <option value="WALLACE VIANA EVANGELISTA" data-rg="43941762">Wallace Viana Evangelista</option>
+          <option value="YSMAYLLA KARAMY DE MOURA BARBOSA" data-rg="55490097">Ysmaylla Karamy de Moura Barbosa</option>
+          <option value="RENATA" data-rg="">Renata</option>
+          <option value="ALEX" data-rg="">Alex</option>
         </select>
+      </div>
+      <div>
+        <label>RG do Servidor</label>
+        <input type="text" id="servidorRG" readonly style="background:var(--cinza-claro);color:var(--cinza-medio);cursor:default" placeholder="Preenchido automaticamente">
       </div>
       <div>
         <label>Função / Cargo *</label>
@@ -748,14 +771,15 @@ tbody tr:last-child td { border-bottom: none; }
       <div>
         <label>Série / Ano *</label>
         <div class="radio-grid" id="serieRadios">
-          <label class="radio-pill"><input type="radio" name="serie" value="6º Ano EF"> 6º Ano</label>
-          <label class="radio-pill"><input type="radio" name="serie" value="7º Ano EF"> 7º Ano</label>
-          <label class="radio-pill"><input type="radio" name="serie" value="8º Ano EF"> 8º Ano</label>
-          <label class="radio-pill"><input type="radio" name="serie" value="9º Ano EF"> 9º Ano</label>
-          <label class="radio-pill" style="border-top:1px dashed var(--borda);padding-top:8px;margin-top:4px;width:100%;font-size:11px;color:var(--cinza-medio);pointer-events:none;background:none;border-left:none;border-right:none;border-bottom:none;border-radius:0"> — Ensino Médio —</label>
-          <label class="radio-pill"><input type="radio" name="serie" value="1ª Série EM"> 1ª EM</label>
-          <label class="radio-pill"><input type="radio" name="serie" value="2ª Série EM"> 2ª EM</label>
-          <label class="radio-pill"><input type="radio" name="serie" value="3ª Série EM"> 3ª EM</label>
+          <label class="radio-pill" style="width:100%;font-size:10px;color:var(--cinza-medio);pointer-events:none;background:none;border-color:transparent;padding:2px 0">── Anos Finais ──</label>
+          <label class="radio-pill"><input type="radio" name="serie" value="6º Ano"> 6º Ano</label>
+          <label class="radio-pill"><input type="radio" name="serie" value="7º Ano"> 7º Ano</label>
+          <label class="radio-pill"><input type="radio" name="serie" value="8º Ano"> 8º Ano</label>
+          <label class="radio-pill"><input type="radio" name="serie" value="9º Ano"> 9º Ano</label>
+          <label class="radio-pill" style="width:100%;font-size:10px;color:var(--cinza-medio);pointer-events:none;background:none;border-color:transparent;padding:2px 0">── Ensino Médio ──</label>
+          <label class="radio-pill"><input type="radio" name="serie" value="1º Ano"> 1º EM</label>
+          <label class="radio-pill"><input type="radio" name="serie" value="2º Ano"> 2º EM</label>
+          <label class="radio-pill"><input type="radio" name="serie" value="3º Ano"> 3º EM</label>
         </div>
       </div>
       <div>
@@ -764,12 +788,8 @@ tbody tr:last-child td { border-bottom: none; }
           <label class="radio-pill"><input type="radio" name="turma" value="A"> A</label>
           <label class="radio-pill"><input type="radio" name="turma" value="B"> B</label>
           <label class="radio-pill"><input type="radio" name="turma" value="C"> C</label>
-          <label class="radio-pill"><input type="radio" name="turma" value="D"> D</label>
-          <label class="radio-pill"><input type="radio" name="turma" value="E"> E</label>
-          <label class="radio-pill"><input type="radio" name="turma" value="F"> F</label>
           <label class="radio-pill"><input type="radio" name="turma" value="ADM"> ADM</label>
           <label class="radio-pill"><input type="radio" name="turma" value="DES"> DES</label>
-          <label class="radio-pill"><input type="radio" name="turma" value="H"> H</label>
         </div>
       </div>
     </div>
@@ -791,20 +811,7 @@ tbody tr:last-child td { border-bottom: none; }
       </div>
     </div>
 
-    <div class="grid-3" style="margin-top:14px">
-      <div>
-        <label>Nome do(a) Responsável</label>
-        <input type="text" id="nomeResponsavel" placeholder="Nome completo">
-      </div>
-      <div>
-        <label>Telefone do Responsável</label>
-        <input type="tel" id="telResponsavel" placeholder="(11) 99999-9999">
-      </div>
-      <div>
-        <label>Endereço Residencial</label>
-        <input type="text" id="enderecoAluno" placeholder="Rua, nº, Bairro">
-      </div>
-    </div>
+
 
     <div style="margin-top:16px; display:flex; gap:10px; justify-content:space-between">
       <button class="btn btn-secondary" onclick="goStep(1)">← Voltar</button>
@@ -857,7 +864,7 @@ tbody tr:last-child td { border-bottom: none; }
       <label class="check-item"><input type="checkbox" value="Acionamento do SUAS"> 🏛️ SUAS</label>
       <label class="check-item"><input type="checkbox" value="Encaminhamento à Saúde"> 🏥 Saúde</label>
       <label class="check-item"><input type="checkbox" value="Articulação com CONVIVA"> 🤲 CONVIVA</label>
-      <label class="check-item"><input type="checkbox" value="Comunicado via App Sala do Futuro"> 📱 App Sala do Futuro</label>
+      <label class="check-item"><input type="checkbox" value="Comunicado via aplicativo escolar"> 📱 App escolar</label>
     </div>
 
     <div class="section-divider"><span>Resultado do Contato</span></div>
@@ -887,8 +894,6 @@ tbody tr:last-child td { border-bottom: none; }
       <label class="check-item"><input type="checkbox" value="Gravidez na adolescência"> 🤰 Gravidez</label>
       <label class="check-item"><input type="checkbox" value="Uso de drogas / substâncias"> ⚠️ Drogas / substâncias</label>
       <label class="check-item"><input type="checkbox" value="Não apresentou justificativa"> ❓ Sem justificativa</label>
-      <label class="check-item"><input type="checkbox" value="Vulnerabilidade psicológica"> 🧠 Vulnerabilidade psicológica</label>
-      <label class="check-item"><input type="checkbox" value="Cuida de ente familiar"> 🤲 Cuida de ente familiar</label>
     </div>
 
     <div class="section-divider"><span>Etapa do Protocolo (SEDUC-39/2023)</span></div>
@@ -965,15 +970,16 @@ tbody tr:last-child td { border-bottom: none; }
         <label>Série / Ano *</label>
         <select id="cad-serie">
           <option value="">Selecione...</option>
-          <optgroup label="── Ensino Fundamental ──">
-            <option value="6º Ano EF">6º Ano EF</option>
-            <option value="7º Ano EF">7º Ano EF</option><option value="8º Ano EF">8º Ano EF</option>
-            <option value="9º Ano EF">9º Ano EF</option>
+          <optgroup label="── Anos Finais ──">
+            <option value="6º Ano A">6º Ano A</option><option value="6º Ano B">6º Ano B</option><option value="6º Ano C">6º Ano C</option>
+            <option value="7º Ano A">7º Ano A</option><option value="7º Ano B">7º Ano B</option>
+            <option value="8º Ano A">8º Ano A</option><option value="8º Ano B">8º Ano B</option><option value="8º Ano C">8º Ano C</option>
+            <option value="9º Ano A">9º Ano A</option><option value="9º Ano B">9º Ano B</option>
           </optgroup>
           <optgroup label="── Ensino Médio ──">
-            <option value="1ª Série EM">1ª Série EM</option>
-            <option value="2ª Série EM">2ª Série EM</option>
-            <option value="3ª Série EM">3ª Série EM</option>
+            <option value="1º Ano A">1º Ano A</option><option value="1º Ano B">1º Ano B</option><option value="1º Ano C">1º Ano C</option>
+            <option value="2º Ano C">2º Ano C</option><option value="2º Ano ADM">2º Ano ADM</option><option value="2º Ano DES">2º Ano DES</option>
+            <option value="3º Ano C">3º Ano C</option><option value="3º Ano ADM">3º Ano ADM</option><option value="3º Ano DES">3º Ano DES</option>
           </optgroup>
         </select>
       </div>
@@ -982,8 +988,7 @@ tbody tr:last-child td { border-bottom: none; }
         <select id="cad-turma">
           <option value="">Selecione...</option>
           <option value="A">A</option><option value="B">B</option><option value="C">C</option>
-          <option value="D">D</option><option value="E">E</option><option value="F">F</option>
-          <option value="ADM">ADM</option><option value="DES">DES</option><option value="H">H</option>
+          <option value="ADM">ADM</option><option value="DES">DES</option>
         </select>
       </div>
     </div>
@@ -1015,9 +1020,13 @@ tbody tr:last-child td { border-bottom: none; }
       <input type="text" id="filtroHistorico" placeholder="🔍 Buscar por aluno ou servidor..." style="flex:1;min-width:200px" oninput="renderHistorico()">
       <select id="filtroSerie" onchange="renderHistorico()" style="width:150px">
         <option value="">Todas as séries</option>
-        <option>6º Ano EF</option><option>7º Ano EF</option><option>8º Ano EF</option>
-        <option>9º Ano EF</option>
-        <option>1ª Série EM</option><option>2ª Série EM</option><option>3ª Série EM</option>
+        <option>6º Ano A</option><option>6º Ano B</option><option>6º Ano C</option>
+        <option>7º Ano A</option><option>7º Ano B</option>
+        <option>8º Ano A</option><option>8º Ano B</option><option>8º Ano C</option>
+        <option>9º Ano A</option><option>9º Ano B</option>
+        <option>1º Ano A</option><option>1º Ano B</option><option>1º Ano C</option>
+        <option>2º Ano C</option><option>2º Ano ADM</option><option>2º Ano DES</option>
+        <option>3º Ano C</option><option>3º Ano ADM</option><option>3º Ano DES</option>
       </select>
       <select id="filtroRisco" onchange="renderHistorico()" style="width:150px">
         <option value="">Todos os níveis</option>
@@ -1179,8 +1188,9 @@ tbody tr:last-child td { border-bottom: none; }
         <label>Filtrar por Série</label>
         <select id="relSerieFiltro">
           <option value="">Todas as séries</option>
-          <option>6º Ano EF</option><option>7º Ano EF</option><option>8º Ano EF</option>
-          <option>9º Ano EF</option>
+          <option>1º Ano EF</option><option>2º Ano EF</option><option>3º Ano EF</option>
+          <option>4º Ano EF</option><option>5º Ano EF</option><option>6º Ano EF</option>
+          <option>7º Ano EF</option><option>8º Ano EF</option><option>9º Ano EF</option>
           <option>1ª Série EM</option><option>2ª Série EM</option><option>3ª Série EM</option>
         </select>
       </div>
@@ -1291,13 +1301,25 @@ let currentStep = 1;
 
 // Sample students data
 const alunosDB = {
-  "6º Ano EF": ["Agatha Silveira","Bento Cordeiro","Catarina Dantas","Dario Magalhaes","Edna Portela","Fabricio Cabral","Giovana Rezende","Horacio Pinto","Irene Sarmento","Julia Wanderley","Kaio Serafim","Leticia Franca","Murilo Lacerda","Nina Bezerra","Oscar Alecrim","Polyana Sena","Quirino Trindade","Rosana Uchoa","Sergio Daltro","Viviane Neves"],
-  "7º Ano EF": ["Alberto Calheiros","Beatriz Samara","Cleiton Passos","Denise Canuto","Elias Parada","Fabiana Lobato","Guilherme Anjos","Helena Valença","Italo Bessa","Joyce Matos","Kleber Limeira","Luciana Barros","Moacir Pimentel","Naira Veloso","Otavio Loureiro","Paola Bezerra","Rafael Bacelar","Silvia Cotia","Thales Marinho","Uanderson Lima"],
-  "8º Ano EF": ["Alinne Torres","Bruno Vasconcelos","Cintia Macedo","Diogo Lacombe","Eliane Muniz","Fernando Mello","Gisele Andrade","Henrique Falcao","Ionara Borba","Jessica Tenorio","Kevin Moura","Ludmila Bastos","Marcelo Holanda","Nayara Feitoza","Osmar Roque","Patricia Bulhoes","Rodrigo Trota","Simone Queiroga","Tatiane Catunda","Vanessa Furtado"],
-  "9º Ano EF": ["Alexandre Salgado","Bibiana Carneiro","Cleverson Barroca","Deborah Estevam","Evandro Cabral","Fatima Vilar","Germano Britto","Hildegard Pessoa","Iraci Moraes","Josenildo Correia","Kassio Teles","Luciano Paiva","Meiriane Batista","Neide Caldas","Onofre Lustosa","Poliana Franca","Ranieri Mota","Simara Linhares","Thiago Palacio","Uranio Vilela"],
-  "1ª Série EM": [{"nome":"BRUNA IASMIN GOMES COSTA MONTEIRO","turma":"A","endereco":"RUA ALICE DOS SANTOS PEIXE - 965, JARDIM SELMA"},{"nome":"EDIMAR DO NASCIMENTO INACIO","turma":"A","endereco":"RUA SÍLVIO ESTEVES - 180, VILA INGLESA"},{"nome":"EDUARDO GREGORIO","turma":"A","endereco":"RUA FREAMUNDE - 324, CONJUNTO RESIDENCIAL JARDIM CANAÃ"},{"nome":"ELOÁH LILIAN FRANÇA FREITAS","turma":"A","endereco":"RUA SÍLVIO ESTEVES - 204 A, VL INGLESA"},{"nome":"ANA LAURA PIVATO NAVEGA","turma":"A","endereco":"RUA LIRIOS DO CAMPO - 190, JD. SÃO SEBASTIÃO - HORTOLANDIA - SP"},{"nome":"GABRIEL ALEXANDRE OLIMPIO","turma":"A","endereco":"RUA RUBEM DE SOUZA - 397, VILA INGLESA"},{"nome":"GABRIEL MARQUES DOS SANTOS","turma":"A","endereco":"RUA RUA MARINA SADDI AIDAR - 61, JARDIM UMUARAMA"},{"nome":"GEOVANNA NICOLE SILVA SANTOS","turma":"A","endereco":"R GERMANO GOTTSFRITZ - 113, JD UBERABA"},{"nome":"GIOVANNA SOARES DE SOUZA","turma":"A","endereco":"R BASTOS TIGRE - 127, JD S JORGE"},{"nome":"GUSTAVO GONZAGA","turma":"A","endereco":"R JOAO NOEL VON SONNLEITHNER - 133, JD STO ANTONINHO"},{"nome":"ISABEL SALES LEANDRO","turma":"A","endereco":"R SILVIO ESTEVES - 409, VL INGLESA"},{"nome":"JOÃO PEDRO PEREIRA NASCIMENTO","turma":"A","endereco":"RUA CARLO CARRA - 635, VILA SANTA CATARINA"},{"nome":"LARYSSA DO NASCIMENTO GOMES","turma":"A","endereco":"RUA COSME FONTE LIRA - 237, CUPECÊ"},{"nome":"MANUELLA DOS SANTOS FEITOSA","turma":"A","endereco":"RUA VICENTE BETTONI - 188, JARDIM ORLY"},{"nome":"MARESSA LISSA MOREIRA DOS SANTOS","turma":"A","endereco":"R WILSON RIBEIRO BONFIM - 12, VL INGLESA"},{"nome":"MARIA CLARA ESTEVES ALMEIDA DOS SANTOS","turma":"A","endereco":"R SALVADOR OLIVEIRA PAES - 4, JD SELMA"},{"nome":"MARIA LUIZA GONÇALVES DOS SANTOS","turma":"A","endereco":"RUA JAMIL JORGE DANIEL - 182, BALNEÁRIO MAR PAULISTA"},{"nome":"MARIA VITÓRIA GOMES SÃO PEDRO","turma":"A","endereco":"RUA CLINEU BRAGA DE MAGALHAES - 48, CIDADE ADEMAR"},{"nome":"MATHEUS FRANCISCO DA CONCEIÇÃO SILVA","turma":"A","endereco":"AVENIDA INTERLAGOS - 295, JARDIM MARAJOARA"},{"nome":"MICHAEL MARREK MAGALHÃES","turma":"A","endereco":"R MANGUABA - 151, JD. UMUARAMA"},{"nome":"MURILO FLORENTINO LEAL","turma":"A","endereco":"RUA DOUTOR UBALDO FRANCO CAIUBI - 138, VL SÃO PAULO"},{"nome":"NAUANY PALMEIRA MILLARES","turma":"A","endereco":"AVENIDA CORONEL FRANCISCO JÚLIO CÉSAR ALFIERI - 230, VILA SÃO PAULO"},{"nome":"PABLO MARCOLINO ALVES","turma":"A","endereco":"R ALBA - 1969, VL PRQ JABAQUARA"},{"nome":"RAPHAEL MOREIRA DE ALMEIDA","turma":"A","endereco":"VITANTÔNIO D'ABRIL - 275, JARDIM ALZIRA"},{"nome":"RUAN MIGUEL CHABLE RODRIGUES","turma":"A","endereco":"RUA JOÃO DE LERY - 463, PARQUE JABAQUARA"},{"nome":"SOFIA DE OLIVEIRA NASCIMENTO","turma":"A","endereco":"RUA SILVIO ESTEVES - 218, JARDIM UMUARAMA"},{"nome":"TAYLLA CRYSTYNE DE CASTRO NASCIMENTO","turma":"A","endereco":"R ANTONIO FOGAL - 18, JD UMUARAMA"},{"nome":"TAYNA ARAUJO RODRIGUES","turma":"A","endereco":"RUA DJALMA CORREIA - 109, VILA INGLESA"},{"nome":"VALENTINA SILVA TEIXEIRA","turma":"A","endereco":"RUA LÚCIO SÊNECA - 16, VILA INGLESA"},{"nome":"ARTHUR DANIEL MACHADO AMORIM","turma":"A","endereco":"R ISAIAS - 244, JARDIM MARIA LUIZA"},{"nome":"CARLOS EDUARDO SILVA PENHA","turma":"A","endereco":"RUA MANOEL NASCIMENTO DIAS - 90, VILA INGLESA"},{"nome":"DAVID DOS SANTOS SEARA","turma":"A","endereco":"RUA SÍLVIO ESTEVES - 123, VILA INGLESA"},{"nome":"ANA BEATRIZ SILVA MACIEL PEREIRA","turma":"A","endereco":"RUA CÉU TROPICAL - 190, CONJ RES JD CANAÃ"},{"nome":"ANA JULIA SILVA MARQUES","turma":"A","endereco":"RUA SÍLVIO ESTEVES - 37, VILA INGLESA"},{"nome":"DAVI BRUNNO DE SOUZA PEREIRA","turma":"A","endereco":"RUA DOS CAFEZAIS - 407, VL STA CATARINA"},{"nome":"LUCAS GABRIEL DA SILVA MOZAT","turma":"A","endereco":"AVENIDA SANTO AFONSO - 63, JARDIM MIRIAM"},{"nome":"NATALIA DE ALMEIDA LOPES PEREIRA","turma":"A","endereco":"RUA CÉU TROPICAL - 190, CONJ RES JD CANAÃ"},{"nome":"PAMELA LIMA ESTEVES","turma":"A","endereco":"RUA EDUARDO AMIGO - 159, JARDIM UMUARAMA"},{"nome":"RAFAEL LIMA ESTEVES","turma":"A","endereco":"RUA EDUARDO AMIGO - 159, JARDIM UMUARAMA"},{"nome":"JULLIA MOREIRA DANTAS DE SOUZA","turma":"A","endereco":"R RUBEM DE SOUZA - 404, VL INGLESA"},{"nome":"VICTÓRIA MARQUES BORGES","turma":"A","endereco":"AV YERVANT KISSAJIKIAN - 1516, VILA CONSTANCIA"},{"nome":"ANDRE GUSTAVO COUTINHO DA SILVA","turma":"B","endereco":"R AILSON SIMOES - 185, CUPECE"},{"nome":"ANDRESSA RODRIGUES DE JESUS","turma":"B","endereco":"RUA ALBA - 1338, VILA PARQUE JABAQUARA"},{"nome":"ARTHUR OLIVEIRA DOS SANTOS","turma":"B","endereco":"RUA SÍLVIO ESTEVES - 191, VILA INGLESA"},{"nome":"BÁRBARA MELO DE CARVALHO","turma":"B","endereco":"R CAMARATINGA - 40, JD ALVORADA"},{"nome":"CÁSSIO MIGUEL DOS SANTOS SILVA","turma":"B","endereco":"RUA PADRE BENTO IBAÑEZ - 545, JARDIM PRUDÊNCIA"},{"nome":"ENRICO RODRIGUES DI CICCO SANCHEZ","turma":"B","endereco":"RUA NILO TORRES - 238, JD UMUARAMA"},{"nome":"ENZO DA SILVA RABELO","turma":"B","endereco":"RUA ELIZABETH LINLEY - 424, AMERICANÓPOLIS"},{"nome":"ERICKA REBEKA ALMEIDA DE OLIVEIRA","turma":"B","endereco":"TRAVESSA SÍLVIA - 906, JARDIM SÃO CARLOS (ZONA SUL)"},{"nome":"ESHLEY MACEDO ALVES","turma":"B","endereco":"RUA RUBEM DE SOUZA - 541, VILA INGLESA"},{"nome":"ESTER CORAGEM SOBRAL","turma":"B","endereco":"RUA PASCOAL MELANTÔNIO - 329, VILA INGLESA"},{"nome":"GABRIEL GRIECO E SILVA","turma":"B","endereco":"RUA ANTÔNIO GIL - 443, JARDIM ALZIRA"},{"nome":"HENRIQUE OLIVEIRA SILVA","turma":"B","endereco":"RUA LEÔNIDAS MOREIRA - 48, VILA INGLESA"},{"nome":"ISABELLY TAVARES NOGUEIRA","turma":"B","endereco":"RUA JOSÉ ANTONIO MARTINS - 398, VL SÃO PAULO"},{"nome":"ISADORA DE PAULA VIEIRA","turma":"B","endereco":"RUA JÚLIO ANDRÉ CORREIA - 78, JARDIM UMUARAMA"},{"nome":"LETICIA PEREIRA DE MATOS","turma":"B","endereco":"R BARAO DE AZEVEDO MACHADO - 286, VL SAO PAULO"},{"nome":"LEYLAINE YASMIM DE SOUZA SILVA SANTIAGO","turma":"B","endereco":"RUA SALVADOR OLIVEIRA PAES - 4, JARDIM SELMA"},{"nome":"LUÍS FELIPE GOMES DA SILVA","turma":"B","endereco":"RUA LEÔNIDAS MOREIRA - 18 A, VILA INGLESA"},{"nome":"LUIZ FERNANDO SILVA DOS SANTOS","turma":"B","endereco":"RUA PACARITAMBO - 163, VILA ISA"},{"nome":"MILENA ARAUJO SARDEIRO","turma":"B","endereco":"RUA ANTÔNIO FOGAL - 342, JARDIM UMUARAMA"},{"nome":"MILENA SILVA SOARES","turma":"B","endereco":"RUA ANTÔNIO LOUREIRO - 86, VILA SANTA CATARINA"},{"nome":"MOISES VINICIUS RABELO DE ANDRADE","turma":"B","endereco":"JOSE ALFREDO DA SILVEIRA - 167, VILA SANTANA"},{"nome":"NICOLY LIMA DE SOUZA","turma":"B","endereco":"RUA CONTOS GAUCHESCOS - 980, VILA SANTA CATARINA"},{"nome":"PAULO HENRIQUE SILVA MAIA","turma":"B","endereco":"RUA ADOLFO CASAIS MONTEIRO - 451, VILA NOVA CALEDÔNIA"},{"nome":"SOPHIA RAIZA MARCOLINO VIEIRA","turma":"B","endereco":"R CARLO CARRA - 562, VL STA CATARINA"},{"nome":"TALITA TIEMI HISSATOMI","turma":"B","endereco":"RUA OSWALDO PAES MOREIRA - 84, VILA SÃO PAULO"},{"nome":"WESLEY DOS SANTOS SOUZA","turma":"B","endereco":"R RAUL MARQUES MARINHO - 400, VL INGLESA"},{"nome":"YASMIN VIEIRA SANTOS DE OLIVEIRA","turma":"B","endereco":"Avenida Cupecê - 1808, Cidade Ademar"},{"nome":"DIEGO DOS SANTOS LIMA AFONSO","turma":"B","endereco":"RUA WILSON RIBEIRO BONFIM - 59, VILA INGLESA"},{"nome":"ANA LUIZA SANTANA E SILVA","turma":"B","endereco":"RUA MARINA SADDI HAIDAR - 138, JARDIM UMUARAMA"},{"nome":"ERIK MAICON ANSELMO LIMA","turma":"B","endereco":"RUA SAMUEL ENDLER - 31, JARDIM ALVORADA (ZONA SUL)"},{"nome":"ISABELLA ALVES DE ALMEIDA","turma":"B","endereco":"R LOURENCO SIQUEIRA PRETO - 118, JD SELMA"},{"nome":"LAILA SILVA SANTOS","turma":"B","endereco":"R AMANDABA - 86, JD PRUDENCIA"},{"nome":"LUIS GUSTAVO OLIVEIRA MACEDO","turma":"B","endereco":"R RUBEM DE SOUZA - 541, VL INGLESA"},{"nome":"MARIA LUISA VIEIRA DA SILVA FRANCO","turma":"B","endereco":"RUA ROMANTISMO - 15, JARDIM CIDÁLIA"},{"nome":"RIQUELME DA SILVA PAIVA","turma":"B","endereco":"RUA DAS FLECHAS - 846, VILA SANTA CATARINA"},{"nome":"WESHILEY RAYSSA DA SILVA CRUZ","turma":"B","endereco":"RUA DESEMBARGADOR OLAVO FERREIRA PRADO - 607, AMERICANÓPOLIS"},{"nome":"JOÃO VICTOR DOS SANTOS VITORIANO","turma":"B","endereco":"R JOSE ANTONIO MARTINS - 316, VL S PAULO"},{"nome":"LAÍS ALVES DE ANDRADE","turma":"B","endereco":"RUA OITO DE MARÇO - 57, VILA SANTA CATARINA"},{"nome":"YASMIN RIBEIRO JUVENASSI","turma":"B","endereco":"RUA PADRE BENTO IBAÑEZ - 545, JARDIM PRUDÊNCIA"},{"nome":"LAVINIA CAROLINE CARVALHO DOS SANTOS","turma":"B","endereco":"RUA XAVIER GOUVEIA - 6, PARQUE COLONIAL"},{"nome":"ANTHONY EDUARDO GUIMARAES VILA NOVA","turma":"C","endereco":"RUA DOUTOR DJALMA PINHEIRO FRANCO - 38, VILA SANTA CATARINA"},{"nome":"AYANE VITÓRIA SANTOS GAMA","turma":"C","endereco":"RUA WILSON RIBEIRO BONFIM - 129, VILA INGLESA"},{"nome":"CAMILA DA CRUZ BARRETO","turma":"C","endereco":"RUA RAIZAL - 16, VILA CONSTANÇA"},{"nome":"ENZO MARINHO CUBO","turma":"C","endereco":"RUA FREI JOÃO DO ROSÁRIO - 545, VILA MARARI"},{"nome":"ERICK FERREIRA DOS SANTOS","turma":"C","endereco":"BASTOS TIGRE - 201, JD SÃO JORGE"},{"nome":"IRAN VITORIANO TAVARES","turma":"C","endereco":"R PEDRO SABINO DE BRITO - 10, VL SAO PAULO"},{"nome":"ISABELLA COSTA SILVA","turma":"C","endereco":"R SILVIO ESTEVES - 3, VL INGLESA"},{"nome":"ISABELLY SOPHIA DE SOUZA VITORIANO","turma":"C","endereco":"RUA JOÃO DA VEIGA BUENO - 162, VILA MARARI"},{"nome":"JHONATAN ALVES FREITAS","turma":"C","endereco":"RUA JOÃO PROTEZEK - 22, CUPECÊ"},{"nome":"JOÃO GUILHERME FERREIRA LINO","turma":"C","endereco":"RUA DOUTOR GENTIL LEITE MARTINS - 698, VILA NOVA CALEDÔNIA"},{"nome":"JOÃO GUILHERME TEIXEIRA MARTINS","turma":"C","endereco":"RUA MÁSCULO - 196, VILA SÃO PAULO"},{"nome":"KAUA OLYMPIO DA SILVA","turma":"C","endereco":"R LAMELAS - 83, VL MASCOTE"},{"nome":"LEANDRO NUNES DA SILVA","turma":"C","endereco":"RUA EDUARDO AMIGO - 317, JD UMUARAMA"},{"nome":"LETICIA RODRIGUES ARAUJO","turma":"C","endereco":"RUA BARÃO DE SANTA MARTA - 485, VILA SANTA CATARINA"},{"nome":"LUÍS OTÁVIO PEREIRA ALVES","turma":"C","endereco":"RUA CARLO CARRA - 534, VILA SANTA CATARINA"},{"nome":"MARIA ALICE AVELINO RODRIGUES","turma":"C","endereco":"RUA OSCAR SCHADE - 142, VILA INGLESA"},{"nome":"MARIA EDUARDA PRATES DE SOUZA","turma":"C","endereco":"RUA JOÃO GOMES BATISTA - 1100, JARDIM CIDÁLIA"},{"nome":"MARIA LUIZA VIEIRA DE MORAIS MOREIRA","turma":"C","endereco":"AVENIDA MASCOTE - 1261, VILA MASCOTE"},{"nome":"MATHEUS NUNES DE LIMA PIRES","turma":"C","endereco":"PC ROSA DE AMOR - 54, VL STA CATARINA"},{"nome":"MILLENA GABRIELLY PINHEIRO DE LIMA","turma":"C","endereco":"R SILVIO ESTEVES - 37, VL INGLESA"},{"nome":"PEDRO CRISÓSTOMO","turma":"C","endereco":"R LATIF FAKHOURI - 139, VL STA CATARINA"},{"nome":"PIERRY DA COSTA SILVA","turma":"C","endereco":"RUA SAMUEL ARNOLD - 394, JARDIM ORLY"},{"nome":"SOFIA SILVA FARIAS","turma":"C","endereco":"TRAVESSA SÃO DOMINGOS - 355, VL SÃO PAULO"},{"nome":"SOPHIA VENCESLAU CRIZANTE","turma":"C","endereco":"RUA CIDADE DE BAGDÁ - 961, VILA MIRA"},{"nome":"THOMAS EDSON FIRMINO DOS SANTOS","turma":"C","endereco":"RUA SELMA KURTZ - 458, JD MARIA LUIZA"},{"nome":"VALENTINA LOPES DA SILVA","turma":"C","endereco":"RUA PASCOAL MELANTONIO - 329, VILA INGLESA"},{"nome":"VICTOR PEREIRA DA SILVA","turma":"C","endereco":"RUA WILSON RIBEIRO BONFIM - 94, VILA INGLESA"},{"nome":"VINÍCIUS ALVES FREITAS","turma":"C","endereco":"RUA JOÃO PROTEZEK - 22, CUPECÊ"},{"nome":"VITÓRIA DOS SANTOS COSTA","turma":"C","endereco":"R JOSE NEVES - 1122, VL S PAULO"},{"nome":"YASMIN PIRES GREGORIO","turma":"C","endereco":"RUA LUÍS GONZAGA BICUDO - 173, JARDIM SANTO ANTONINHO"},{"nome":"GABRIEL FERREIRA DA SILVA","turma":"C","endereco":"RUA HONORINDA JOSEFA DA SILVA - 112, VILA INGLESA"},{"nome":"GEOVANNA FARIA DE FREITAS","turma":"C","endereco":"RUA JOSÉ ANTÔNIO MARTINS - 03, VILA SÃO PAULO"},{"nome":"LEONARDO SANTOS PARDINHO","turma":"C","endereco":"RUA ANTÔNIO FOGAL - 181, JARDIM UMUARAMA"},{"nome":"MIGUEL RODRIGUES MONTEIRO SOARES","turma":"C","endereco":"AVENIDA VEREADOR JOÃO DE LUCA - 1515, JARDIM PRUDÊNCIA"},{"nome":"NICOLY MASTROCEZARE FRANCO DE MORAES","turma":"C","endereco":"RUA FREAMUNDE - 180, CONJUNTO RESIDENCIAL J"},{"nome":"PEDRO DE ANDRADE ALEXANDRE","turma":"C","endereco":"RUA FRANKLIN MAGALHÃES - 883, VILA SANTA CATARINA"},{"nome":"TAIZA DOS SANTOS GUERRA","turma":"C","endereco":"R DIONISIO LAVRANGA - 90, JD ORLY"},{"nome":"ISABELA CRISTINA PEREIRA DA SILVA","turma":"C","endereco":"AVENIDA VEREADOR JOÃO DE LUCA - 400, JARDIM PRUDÊNCIA"}],
-  "2ª Série EM": [{"nome":"AMANDA ROCHA ALVES","turma":"ADM","endereco":"AVENIDA WASHINGTON LUÍS - 2306, SANTO AMARO"},{"nome":"ANA LUCIA FERREIRA DO NASCIMENTO","turma":"ADM","endereco":"RUA OSCAR DE BARROS - 138, JARDIM ITAPURA"},{"nome":"ANA LUIZA DOS SANTOS","turma":"ADM","endereco":"RUA WILSON RIBEIRO BONFIM - 94, VILA INGLESA"},{"nome":"ANNA JÚLIA OLIVEIRA TIGRE","turma":"ADM","endereco":"AVENIDA INTERLAGOS - 871, JARDIM UMUARAMA"},{"nome":"ANTONY ISRAEL VIEIRA CABRAL","turma":"ADM","endereco":"RUA SILVIO ESTEVES - 123, VILA INGLESA"},{"nome":"DJOUNICA DONNA DJARABIE CÉNATUS","turma":"ADM","endereco":"RUA BELARMINO FERNANDES DE FRANÇA - 136, JARDIM PRUDÊNCIA"},{"nome":"FELIPE NAVARRO DO NASCIMENTO","turma":"ADM","endereco":"RUA LEÔNIDAS MOREIRA - 52, VILA INGLESA"},{"nome":"LAURA GONÇALVES MACHADO","turma":"ADM","endereco":"PRAÇA JORGE DA COSTA LIMA - 59, JARDIM CUPECE"},{"nome":"MANUELLY DE OLIVEIRA SANTANA","turma":"ADM","endereco":"RUA ANA DE JESUS FERREIRA - 2A, VILA INGLESA"},{"nome":"MARIA CLARA OLIVEIRA COSTA","turma":"ADM","endereco":"RUA MONSENHOR JOSÉ MARINONI - 12, VILA MISSIONÁRIA"},{"nome":"MARIA SOFIA LOPES SILVA","turma":"ADM","endereco":"RUA MARATONA - 328, VILA ALEXANDRIA"},{"nome":"MARIANE DE JESUS GOES","turma":"ADM","endereco":"RUA ANAMBÉ PRETO - 15, JARDIM MIRIAM"},{"nome":"MICHAEL CRUZ DOS SANTOS","turma":"ADM","endereco":"RUA SANTA MATILDE - 122, CONJUNTO RESIDENCIAL JARDIM CANAÃ"},{"nome":"PAOLA DA SILVA ANTUNES ARAUJO","turma":"ADM","endereco":"RUA SAMUEL ENDLER - 18, JARDIM ALVORADA (ZONA SUL)"},{"nome":"PEDRO MORENO VIEIRA GONZAGA","turma":"ADM","endereco":"RUA JOÃO NOEL VON SONNLEITHNER - 133, JD SANTO ANTONINHO"},{"nome":"YASMIN LIMA OLIVEIRA","turma":"ADM","endereco":"AV WASHINGTON LUIS - 1576, STO AMARO"},{"nome":"RYAN ARAUJO ARCANJO","turma":"ADM","endereco":"R DOUTOR GUSTAVO DA VEIGA - 30, VL IMPERIO"},{"nome":"MATHEUS DE SÁ SILVA","turma":"ADM","endereco":"RUA FRANCISCO FELIPPE AGOSTI - 80, VILA INGLESA"},{"nome":"BRUNO VENANCIO PIRES","turma":"DES","endereco":"RUA WILSON RIBEIRO BONFIM - 94, VILA INGLESA"},{"nome":"BRYAN REZENDE DE SOUZA","turma":"DES","endereco":"R JOSE ANTONIO MARTINS - 316, VL S PAULO"},{"nome":"CARLOS EDUARDO SIMÕES DOS SANTOS","turma":"DES","endereco":"RUA PADRE FRANCISCO CORDEIRO - 38 A, VILA MISSIONARIA"},{"nome":"DAVI LUCAS SOUZA SILVA","turma":"DES","endereco":"R GERMANO GOTTSFRITZ - 88B, JD UBERABA"},{"nome":"ENZO RODRIGUES DI CICCO SANCHEZ","turma":"DES","endereco":"RUA NILO TORRES - 238, JD UMUARAMA"},{"nome":"FRANCIELE DE SOUZA LOPES","turma":"DES","endereco":"RUA JOSÉ ANTÔNIO MARTINS - 289, VILA SÃO PAULO"},{"nome":"GABRIEL MOISES CAMPOS DE SOUSA","turma":"DES","endereco":"RUA JOSÉ NEVES - 153, VILA SÃO PAULO"},{"nome":"GIOVANNA BRAGA DE NATALE","turma":"DES","endereco":"RUA LEÔNIDAS MOREIRA - 2, VILA INGLESA"},{"nome":"GUILHERME HENRIQUE RODRIGUES SOARES","turma":"DES","endereco":"AVENIDA CUPECÊ - 1877, CIDADE ADEMAR"},{"nome":"GUSTAVO DE LARA MENDONÇA","turma":"DES","endereco":"TRAVESSA ANA DE JESUS FERREIRA - 5, VL INGLESA"},{"nome":"HIAN MIRANDA DE OLIVEIRA","turma":"DES","endereco":"RUA SÃO JOÃO DA BOA VISTA - 43, AMERICANÓPOLIS"},{"nome":"JOÃO PEDRO PEREIRA BARELLA","turma":"DES","endereco":"RUA MANGUABA - 178, JARDIM UMUARAMA"},{"nome":"LUANA LOURENÇO ARAÚJO","turma":"DES","endereco":"RUA PAPA GREGÓRIO MAGNO - 323, VILA MISSIONÁRIA"},{"nome":"LUCAS AMORIM DE PAULA","turma":"DES","endereco":"R RUBEM DE SOUZA - 397, VL INGLESA"},{"nome":"MARIA EDUARDA OLIVEIRA DOS SANTOS","turma":"DES","endereco":"RUA CRISTALINA - 97, JARDIM BOA VISTA (ZONA SUL)"},{"nome":"MARTHA ESTTER DOS SANTOS PONTES","turma":"DES","endereco":"RUA ALCIDES MACIEL - 59, VILA SÃO PAULO"},{"nome":"MATEUS SILVA SANTOS","turma":"DES","endereco":"RUA CHICO MENDES - 56, VILA SÃO PEDRO"},{"nome":"MATHEUS CANDIDO GONCALVES REIS","turma":"DES","endereco":"RUA EDOARDO MASCHERONI - 126, AMERICANÓPOLIS"},{"nome":"OTAVIO ANTONIO FREIRE OSORIO","turma":"DES","endereco":"RUA ALBERTO SAMPAIO - 296, VILA SANTA CATARINA"},{"nome":"PAULO RICHARD MARTINS DAMASCENA SILVEIRA","turma":"DES","endereco":"RUA WILSON RIBEIRO BONFIM - 94, VILA INGLESA"},{"nome":"PEDRO HENRIQUE COSTA PEREIRA","turma":"DES","endereco":"RUA DAS FLECHAS - 364, VILA SANTA CATARINA"},{"nome":"PEDRO HENRIQUE FREITAS DIAS","turma":"DES","endereco":"RUA PADRE NATAL PIGATO - 29, VILA MISSIONÁRIA"},{"nome":"PEDRO MIGUEL OLIVEIRA AZEVEDO DA SILVA","turma":"DES","endereco":"RUA FREAMUNDE - 233, CONJUNTO RESIDENCIAL JARDIM CANAÃ"},{"nome":"PEDRO PENTEADO RESENDE DOS ANJOS MIRANDA","turma":"DES","endereco":"R FRANCISCO MALAFAIA - 174, CUPECE"},{"nome":"RICHARD DE BRITO AMARAL","turma":"DES","endereco":"RUA DOS CAFEZAIS - 613, JARDIM PRUDÊNCIA"},{"nome":"RICHARD MIGUEL REBOUÇAS MANUEL","turma":"DES","endereco":"RUA JOSE NEVES - 767, VILA SAO PAULO"},{"nome":"VICTORIA RODRIGUES DOS SANTOS","turma":"DES","endereco":"AVENIDA CUPECÊ - 1877, CIDADE ADEMAR"},{"nome":"YAN KENJI HORIBE GOMES","turma":"DES","endereco":"RUA SABINO ROSA - 100, VILA CONSTANÇA"},{"nome":"BERNARDO GRAF GALVÃO","turma":"DES","endereco":"RUA DOUTOR BRASÍLIO MACHADO NETO - 97, VILA LISBOA"},{"nome":"ALESSANDRA DE CARVALHO ALVES","turma":"H","endereco":"RUA JOSE NABANTINO RAMOS - 130, JD UMUARAMA"},{"nome":"ANA VITÓRIA COSTA DA SILVA","turma":"H","endereco":"R PROFESSOR AZAMBUJA SUZANO - 177, JD NITEROI"},{"nome":"BRUNA LEONARDO DA SILVA","turma":"H","endereco":"R SAMUEL ENDLER - 5, JD ALVORADA  Z SUL"},{"nome":"DAVI AUGUSTO DE OLIVEIRA MARTINS","turma":"H","endereco":"RUA WILSON RIBEIRO BONFIM - 94, VILA INGLESA"},{"nome":"EVELLYN CAROLINE VIEIRA DOS SANTOS","turma":"H","endereco":"R JOSE ANTONIO MARTINS - 291, VL S PAULO"},{"nome":"GUILHERME FELYPE PEREIRA DA SILVA","turma":"H","endereco":"RUA MANUEL BORDALO PINHEIRO - 355, PARQUE SANTO ANTÔNIO"},{"nome":"KEVEN NOLETO DE SOUZA","turma":"H","endereco":"RUA CONTOS GAUCHESCOS - 510, VILA SANTA CATARINA"},{"nome":"LARISSA LEONARDO DA SILVA","turma":"H","endereco":"R SAMUEL ENDLER - 5, JD ALVORADA"},{"nome":"LORRAYNE KAROLYNE ALMEIDA MACHADO","turma":"H","endereco":"RUA SILVIO ESTEVES - 475, VL INGLESA"},{"nome":"MARCELO SILVA DE MACEDO","turma":"H","endereco":"R INACIO XAVIER - 401, JD CONSORCIO"},{"nome":"NICOLLI DOS SANTOS SILVA","turma":"H","endereco":"RUA PÚBLIO PIMENTEL - 342, AMERICANÓPOLIS"},{"nome":"SARA RAPHAELY CARDOSO DOS SANTOS","turma":"H","endereco":"RUA REVERENDO DAILY REZENDE FRANÇA - 56, JD SÃO JORGE"},{"nome":"SOFIA SCHAEFER GOMES","turma":"H","endereco":"RUA CIDADE DE BAGDÁ - 881, VILA MIRA"},{"nome":"STEFANI RIBEIRO STORARI","turma":"H","endereco":"R DOUTOR JOSE VICENTE DE BARROS FILHO - 103, VL INGLESA"},{"nome":"VICTOR HUGO GUIMARÃES ROCHA","turma":"H","endereco":"RUA WILSON RIBEIRO BONFIM - 94, VILA INGLESA"},{"nome":"YAGO PEREIRA DA SILVA","turma":"H","endereco":"RUA CONCHAS - 340, AMERICANÓPOLIS"},{"nome":"YELIANNIS JOSEFINA FARIAS MORA","turma":"H","endereco":"RUA SAMUEL ENDLER - 32B, JARDIM ALVORADA (ZONA SUL)"},{"nome":"SOPHIA VITORIA GOMES MATTOS DA SILVA","turma":"H","endereco":"R SILVIO ESTEVES - 37, VL INGLESA"},{"nome":"JOAO PEDRO MOURA TEIXEIRA","turma":"H","endereco":"WASHINGTON LUIS - 4265, SANTO AMARO"},{"nome":"GABRIEL MATIAS COSTA","turma":"H","endereco":"RUA PASCOAL MELANTÔNIO - 08, VILA INGLESA"}],
-  "3ª Série EM": [{"nome":"ANA CAROLINA GRAF GALVÃO","turma":"ADM","endereco":"RUA DOUTOR BRASÍLIO MACHADO NETO - 97, VILA LISBOA"},{"nome":"ANA CAROLINA SANTANA DOS SANTOS","turma":"ADM","endereco":"RUA ROBÉLIA - 349, JARDIM PRUDÊNCIA"},{"nome":"ANA KAROLINE SOARES DE SOUZA","turma":"ADM","endereco":"RUA WILSON RIBEIRO BONFIM - 94, VILA INGLESA"},{"nome":"CÍCERO MIGUEL DA SILVA JÚNIOR","turma":"ADM","endereco":"RUA PADRE BENTO IBANEZ - 545, JARDIM PRUDENCIA"},{"nome":"DANIEL YAGO DOS SANTOS MARTINS","turma":"ADM","endereco":"RUA JULIO ANDRE CORREIA - 62, JD ALVORADA"},{"nome":"DANIELLE MARTINS DE LIMA","turma":"ADM","endereco":"RUA TOMÁS TEIXEIRA - 733, VILA CONSTANÇA"},{"nome":"FABRICIO PACHECO DOS SANTOS","turma":"ADM","endereco":"RUA MARGUERITE LOUISE RIECHELMAN - 180, VILA ERNA"},{"nome":"GUILHERME ALVES ALENCAR","turma":"ADM","endereco":"RUA WILSON RIBEIRO BONFIM - 94, VILA INGLESA"},{"nome":"GUILHERME DA SILVA VIANA","turma":"ADM","endereco":"AVENIDA JACEGUAVA - 3, BALNEÁRIO SÃO JOSÉ"},{"nome":"JULIA GONÇALVES MACHADO","turma":"ADM","endereco":"PC JORGE DA COSTA LIMA - 59, CUPECE"},{"nome":"MARIA GABRIELA DA SILVA ANDRADE","turma":"ADM","endereco":"R FREI FRANCISCO FERREIRA - 490, VL MISSIONARIA"},{"nome":"MARIANNA RIBEIRO TRALDI","turma":"ADM","endereco":"R FRANCISCO TELES DOURADO - 633, JD PRUDENCIA"},{"nome":"MAYSA MOTA DE OLIVEIRA","turma":"ADM","endereco":"R FREAMUNDE - 277, CJ RES JD CANAA"},{"nome":"MELYSSA PLUMARI NOBRE","turma":"ADM","endereco":"RUA NAZARÉ REZEK FARAH - 77, VILA SANTA CATARINA"},{"nome":"NICOLAS ROCHA SILVA FERREIRA","turma":"ADM","endereco":"RUA FERNAO LOPES - 41, VILA INGLESA"},{"nome":"THAMARA HELLEN PRATA DE CASTRO","turma":"ADM","endereco":"RUA PEDRO SABINO DE BRITO - 69A, JARDIM LOS ANGELES"},{"nome":"THIAGO DE OLIVEIRA AMORELLI","turma":"ADM","endereco":"RUA DAS TAQUARAS - 383, VILA SANTA CATARINA"},{"nome":"VICTOR MAIA VIEIRA","turma":"ADM","endereco":"RUA FRANCISCO ENES - 3, BALN MAR PAULISTA"},{"nome":"ANA CLARA BASSETTI ORLANDO","turma":"DES","endereco":"RUA JOSÉ NEVES - 310, VILA SÃO PAULO"},{"nome":"DALTON ALMEIDA CARDOSO","turma":"DES","endereco":"RUA CLINEU BRAGA DE MAGALHÃES - 145, JARDIM NOSSO LAR"},{"nome":"EDUARDO MENDES QUEIROZ","turma":"DES","endereco":"RUA LANNES - 30, VILA MASCOTE"},{"nome":"GABRIELLA DOS SANTOS COSTA","turma":"DES","endereco":"RUA BENTO DIAS BOTELHO - 18, VILA JOANIZA"},{"nome":"KAUA FELISBERTO GUIMARAES","turma":"DES","endereco":"AV INTERLAGOS - 1585, JD UMUARAMA"},{"nome":"KAUAN MATOS NASCIMENTO","turma":"DES","endereco":"RUA CARLOS FACCHINA - 468, AMERICANÓPOLIS"},{"nome":"LARISSA NOLÊTO DE SOUZA","turma":"DES","endereco":"RUA CONTOS GAUCHESCOS - 510, JD JABAQUARA"},{"nome":"MARIA EDUARDA SANTOS DA SILVA","turma":"DES","endereco":"R ANTONIO FOGAL - 553, JD UMUARAMA"},{"nome":"RAPHAEL HENRIQUE BARBOSA LAGE","turma":"DES","endereco":"R PEDRO SABINO DE BRITO - 7, JD L ANGELES"},{"nome":"SAIDA JADYDI","turma":"DES","endereco":"AVENIDA INTERLAGOS - 295, JARDIM MARAJOARA"},{"nome":"BEATRIZ BARRETO COSTA","turma":"H","endereco":"RUA WILSON VALLIM - 83, VILA SÃO PAULO"},{"nome":"CAMILLY EXALTAÇÃO LIMA","turma":"H","endereco":"RUA GIÁCOMO LAURI-VOLPI - 442, AMERICANÓPOLIS"},{"nome":"DANIEL HENRIQUE DOS SANTOS GOUVEIA","turma":"H","endereco":"AVENIDA INTERLAGOS - 1835, JARDIM UMUARAMA"},{"nome":"EMILLY KIMBERLY MELLO DOS SANTOS","turma":"H","endereco":"R SILVIO ESTEVES - 123, VL INGLESA"},{"nome":"GERDA ELLEN DA SILVA LIMA","turma":"H","endereco":"RUA CONTOS GAUCHESCOS - 82, VILA SANTA CATARINA"},{"nome":"HELOISA BERNI ALVES","turma":"H","endereco":"AVENIDA MASCOTE - 1381, VILA MASCOTE"},{"nome":"LUAN DE OLIVEIRA LIMA","turma":"H","endereco":"RUA GABRIELE D'ANNUNZIO - 1066, CAMPO BELO"},{"nome":"MANUELA BARRETO","turma":"H","endereco":"RUA DURVAL PEDROSO DA SILVA - 280, VILA DO CASTELO"},{"nome":"MARCOS SILVA DE MACEDO","turma":"H","endereco":"INACIO XAVIER - 401, JARDIM CONSORCIO"},{"nome":"MARIA LUIZA DE CASTRO FREITAS","turma":"H","endereco":"RUA JOSÉ ANTÔNIO MARTINS - 317, VILA SÃO PAULO"},{"nome":"NATHÁLIA FREITAS MONTEIRO ALVES","turma":"H","endereco":"R ANTONIO PEDRO TEIXEIRA - 85, JD NITEROI"},{"nome":"THAYNARA FARIA DOS SANTOS","turma":"H","endereco":"RUA VEREADOR DORIVAL JOAQUIM LOPES - 61, INAMAR - DIADEMA - SP"},{"nome":"SABRINA MAYSA MARCOLINO VIEIRA","turma":"H","endereco":"R CARLO CARRA - 17, VL STA CATARINA"}]
+"6º Ano A": ["ALEF MELO CONCEIÇÃO","ANA MARIA JOÃO MANUEL","ANNA JÚLIA ROQUE DOS SANTOS","ARTHUR MANOEL SILVA DOS ANJOS","BRUNA PRADO FREITAS","CARLOS DANIEL CORREIA","CHRISTIAN MIGUEL TADDEI","CHRISTOFFER WILLIAM SILVA DO NASCIMENTO","DAVI VIEIRA FRANCO","EDUARDO KEVIN LINO FERREIRA","EMILLY BENTO SILVA","EMILLY SOFIA CARDOSO GOMES","JOÃO LUCCA LORENZON BORGES","JOVITO CONCEIÇÃO DOS SANTOS","JULIANA CARRATE DO NASCIMENTO","KAMILLY OLIVEIRA SOARES","LAURA MENDES SALES","LAURA VALENTINA LINO FERREIRA","LORENA MIRANDA ALVES DE SOUZA","LORENNA VALENTINA SILVA ALVES","LUCAS FERNANDES SARRIA DOS REIS","LUCCA RAPHAEL DE CASTRO SILVA","MARIA EDUARDA DA SILVA","MARIANNE VICTORIA FERREIRA DA CRUZ","MIGUEL LOPES DAMASCENO","NICOLAS MIGUEL CAVALCANTI OLIVEIRA","OCTAVIO LUIS FAGUNDES FIGUEIREDO ROBLES","PEDRO LOPES MARQUES CRESPO","RIHANNA MARTA SILVESTRE DE FRANCA","SIDNEY GOMES SANTANA","SOPHIA APARECIDA SANTOS DE ALMEIDA","TALITA BRITO SILVA","YARA LIDIA CARVALHO PEREIRA","JOÃO PEDRO PADILHA GUERESI"],
+"6º Ano B": ["ALICE ROCHA DO CARMO","ANA CLARA AUGUSTO DA SILVA","ANTHONY FURTADO IVO","ARTUR GOMES DA SILVA","BERNARDO CAVALCANTE DOS SANTOS","BRUNO DA SILVA BARROS","DAVYD LUIS NASCIMENTO VIEIRA","DIEGO LEONARDO DOS SANTOS MOREIRA","ELYSA CECILIA SANTOS DA SILVA","EMANUELLA LILIAN FRANÇA FREITAS","GABRIEL DA COSTA SILVA","GABRIEL JHONYS DE OLIVEIRA CLAUDINO","GEOVANNY GABRIEL DA SILVA","HADASSA THALIA DIAS OLIVEIRA MAGALHÃES","HELOYSA CAROLLINE BARBOSA DOS SANTOS","ISABELLA TOJAL TEIXEIRA DA SILVA","JOAQUIM REZENDE LOPES","LEANDRO DE SOUSA MARINHO","LORENNA MOREIRA DA SILVA","LUCAS HENRIQUE BARBOSA SILVA","LUCAS VIEIRA DE SOUSA","LUIZ RENATO SANTOS FERREIRA","MARCELA TADEU SALUSTRIANO GOMES DA SILVA","MARIA JÚLIA ARAUJO DOS SANTOS","MARIANA ESTERFANE RAMALHO SILVA","MIGUEL PEREIRA DOS SANTOS","MIGUEL SANTOS COSTA","MURILO RAVAGNANI","NÍCOLLAS GREGÓRIO RIBEIRO","RAFAEL SARMENTO BASTOS","RAPHAEL SALDANHA DE OLIVEIRA","RICHARD BARBOSA FREITAS","SOFIA DO CARMO BARBOSA","SOPHIA VALENTINA SANTANA DE OLIVEIRA","VICTOR OLIVEIRA DE LAIA","PEDRO HENRIQUE SANTOS REIMBERG"],
+"6º Ano C": ["ANA BEATRIZ DE ALMEIDA","ANA LUIZA VIEIRA DA SILVA","ARTHUR ARAUJO SANTOS","ARTHUR SANTOS PIMENTEL","BIANCA SILVA SANTOS","DAVI LUCCA CARDOSO SIMÕES","DAVI LUCCA JESUS DOS SANTOS","DAVID LUCCA AGUIAR CARVALHO","DIOGO COSTA LOPES","EDUARDO ASAPHE BARROS DE LIMA","GABRIEL DOS SANTOS COSTA","GUILHERME DE SOUZA SILVA","HELENA MENEZES DE OLIVEIRA BATISTA","IARA MAESTRELO PRADO","ISABELLA AMARAL MARIANO","JHONATAN MIGUEL BISPO SILVA","JOSÉ ARTHUR DOS SANTOS PRUDENTE","JOSÉ LUIZ SOUZA DO NASCIMENTO","KAROLINY VICTORIA SANTOS CABRAL","LARA ESTABEL AMORIM","LAVÍNIA SOARES DA SILVA","MANUELLA PEREIRA REIS","MIGUEL AUGUSTO AMAYA","MIGUEL DA SILVA SANTOS","MILENE LIRA MACIEL","MIRIAN ESTRELA DE OLIVEIRA","NICOLLY OLIVEIRA BARBOSA","OHANA MARINHO DOS SANTOS","RAYLA MARIANA VIANA VERISSIMO","RYAN RIBEIRO DA SILVA","SOFIA DOS ANJOS SANTOS","THALLES MIGUEL MACIEL DOS SANTOS","THIAGO SANTOS SENA DE JESUS","VITOR GABRIEL DA SILVA COSTA","YASMIN MACIEL DEMUTH LOPEZ","YGOR GABRIEL GUIMARÃES VILA NOVA","ANNE VITORIA GUIMARÃES OLIVEIRA"],
+"7º Ano A": ["ANNA CLARA GONCALVES DE BARROS","ARTHUR COSTA DA CONCEIÇÃO","DAVI FABIANO DE OLIVEIRA","DAVI MOURA MARTINS DE FARIA","ELOAH DIAS COELHO","EMILLY ALVES LIMA","ENZO PARESCHI DE LIMA PONCE LEÃO","ERICK YUSUKE SANTANA LOPES","FELIPE NUNES ASSMANN","GUILHERME RAFAEL AQUINO DE BARROS","ISABELLY SOBRAL VIEIRA","JOABISON WENDEL MARQUES SILVA","JOÃO PEDRO BONFIM MACEDO","JOSÉ RUAN APOLINARIO SERETTI","JULIANA DARK SOUZA DO NASCIMENTO","KETYLLIN MELISSA DE SOUZA SANTOS","LÍVIA MORENO DE PAULA","LORENA BATISTA SOARES DIAS","LUIZ MIGUEL NUNES GARCIA","MANUELLA OLIVEIRA PUGLESI","MARIA EDUARDA LEMOS SIQUEIRA","MARIA EDUARDA PEREIRA DE ANANIAS","MARIANA MACEDO DOS SANTOS","MIGUEL KUSTOVICH STRAIOTO LABIAPARI","NICOLLY RODRIGUES NUNES","OLÍVIA ALMEIDA DEMARCHE RIBEIRO","PEDRO ENZO VENCESLAU CRIZANTE","PEDRO MIGUEL COSTA BRAGA ARAUJO","RAFAELA MORENO DE PAULA","SARAH CRISTINA ALMEIDA DE ASSIS","SOFIA SOUZA DE OLIVEIRA","SOPHIA ABRANTES DE SOUSA","SOPHIA KAROLINY VITALINO DE OLIVEIRA","SOPHIA SANTOS SIMÃO","THÉO MARINHO CUBO","VALENTINA COSTA E SILVA CARDOSO","ZACK NASCIMENTO MANFREDI","JOAQUIM SILVA CARNEIRO RABELO","WILDERLYS VICTORIA MENDEZ MEDINA"],
+"7º Ano B": ["ALICE ALVES DE BRITO MANSO","ANDERSON BARBOSA DOS SANTOS JUNIOR","ANDRÉ BORGES FERREIRA","ANDRYS DE ANDRADE SANTOS","ANNA VITÓRIA AQUINO SANTOS","ARTHUR DE OLIVEIRA BRAGA","BEATRIZ LORENA FAGUNDES DE ARAUJO","BERNARDO HENRIQUE DA COSTA PAULA","BRENO JOSÉ DOS SANTOS BENTO","BRYAN SILVA PEREIRA","DESIRÈ FERNANDA DELOGO DE OLIVEIRA","ENZO GABRIEL SILVA DE SOUZA","FELIPE SANTOS SOUZA DA MOTA","FLAVIO HENRIQUE GOMES DE OLIVEIRA","GABRIELLY SOARES DE CARVALHO","GUILHERME RIBEIRO LIMA ISMAEL","HEITOR GABRIEL VIANA DA SILVA","HEITOR LIMA NASCIMENTO","HELOÍSA ALVES ALENCAR","IAN LEANDRO DEL ZOTTO","JOÃO HENRIQUE PEREIRA MARQUES","JULIA GOMES DA SILVA","JULLIANA FAUSTINO LIMA DOS SANTOS","KAROLINA NASCIMENTO BOMFIM","LORENA DE JESUS ASSIS","LORENA LIMA CAVALCANTE SILVA","LUAN MARTINS PEREIRA","LUIS FELIPE DANTAS MEDEIRO FERREIRA","MELYSSA DA SILVA CANTANHEDE","NATHALLY VITÓRIA RODRIGUES DA SILVA","RYAN DE ANDRADE SANTOS","SAMUEL ALVES GONZAGA","SARA DA SILVA SOUZA","SOPHIA COSTA DE LIRA","THOMAS STOPPA BARBOSA DA SILVA","VITOR GABRIEL NOBRE DE BARROS","YGOR GUILHERME PEREIRA SILVA","EMERSON ALVES FELIPE"],
+"8º Ano A": ["ALANA FARIA DOS ANJOS","ANA BEATRIZ SANTOS SOARES","ARTHUR CLAUDINO DOS SANTOS","BEATRIZ ESTRELA DE OLIVEIRA","BRYAN ESTEVES ALMEIDA DOS SANTOS","CAIO RYAN BARBOSA LAGE","EMANUELA MESQUITA MATOS","ENZO GABRIEL RICARTE DO VALE","ENZO LUCAS BIGLIA SILVA","ENZO MARCONDES DA SILVA","GABRIEL FERREIRA BARBOSA","GIOVANNA GIULIA FERREIRA DA CRUZ","GUSTAVO MATÍAS NUNES","ISAAC GOMES BARROS MOREIRA","ISABELLA CRISTYNA BAPTISTA DE LIMA","ISIS PAIVA VOLTANI","JULIA GARCIA CHAGAS","KAMILLY MARQUES DO CARMO DE OLIVEIRA","KEILLY MARCO DA SILVA","KELLY FERNANDA DE OLIVEIRA","LAURA SILVA ZAPATA","LETICIA BRITO DOS REIS","LUIZA GABRIELLA RAMOS COSTA BARRA","MARIA VITORIA PEREIRA","MIGUEL OLIVEIRA DA COSTA","MIGUEL OLIVEIRA PIZARRO","MIRELA DA SILVA ANDRADE","NICOLY CAROLINE SILVA GUIMARÃES COSTA","PIETRO ARTHUR NERI LIMA","RAFAELLA OLIVEIRA GOMES","REBECKA SANTOS DA SILVA","RENAN LEONARDO","SOPHIA FERREIRA DE OLIVEIRA","THAIS DOS SANTOS COSTA","TIAGO GADELHA CHABUH","YASMIN FIALHO ARAUJO VIEIRA","KEVIN MIGUEL DOS SANTOS FREITAS"],
+"8º Ano B": ["AGHATA BEATRIZ CARDOSO DE CARVALHO","ANA ALICE OLIVEIRA SANTOS","ANA CAROLINA VASCONCELOS","BRYAN BRENDON DALESSIO FIGUEIRA SOKOLOWSKI","DANIELLA FERNANDA ANDRADE ROCHA","EMANUELLY ALPANHEZ TSEI","GABRIELLA AYNARA SANTANA DE ALMEIDA","GEOVANNA SANTANA BARBOSA","GIOVANA EDUARDA FERREIRA BENTO","ISABELLY BONFIM DOS SANTOS SANTANA LIMA","JOHNATHAN DA SILVA SANTOS","KAREN VITÓRIA DE CAMPOS HILÁRIO","KARMEN GABRIELLY DE SOUZA LUNA LIMA","KAUÊ DAVI MACEDO SOUSA","KEZIA ALEXANDRINO DOS SANTOS","LARÍSSA CORDEIRO OLIVEIRA","LAVÍNIA GOIS FACHINI","LIVIA SALDANHA PINHO","LUAN DE CASTRO SILVA","LUAN SILVA BATISTA DE OLIVEIRA","LUIZ PINTO DA SILVA NETO","LUIZA GABRIELLA RAMOS COSTA BARRA","MARIA EDUARDA LEANDRO XAVIER DA SILVA","MELISSA GABRIELLE DA SILVA VOCE","MURILO GUERRA CAMACHO","NATIÉLY DE ALMEIDA","PAOLA LIRA MACIEL","PEDRO HENRIQUE BATISTA DE ANDRADE","RENAN GROSS COMIN MAGALHÃES","RIAN BRIAN SILVA DE PAIVA","SARAH LOURDES PEREIRA ALVES","SOPHIA DE SÁ SOUSA","SOPHIA LUCAS BIGLIA SILVA","YASMIM MARINHO MOTA","MARIA EDUARDA ALMEIDA ABREU","SAMUEL ANTHONY INACIO DE ARAUJO","CARLOS PIETRO BACINE DA SILVA","ARTHUR BRAGA DOS SANTOS SOUSA"],
+"8º Ano C": ["AGATHA TEODORO PANIQUAR LOTERIO","ALICE DE SOUZA SANTOS SILVA","ANA LAURA DE ARAUJO CALIXTO","ARTHUR TAVARES OLIVEIRA","BEATRIZ SÁ TELES FERREIRA","CALVIN SOUJI SANTANA LOPES","CAMILLY CESCONETTO MARTINS","DAVI LUCCA GALDINO FERREIRA","DEBORA NASCIMENTO CARDOSO DE SÁ","GABRIEL SANTOS MENDES","GEOVANNA MICKAELLE DE ANDRADE MOURA","HENRIQUE RODRIGUES DA SILVA","JULIA REBOUÇAS DA LUZ","KAROLLINY MARQUES ALVES","KAUÊ RAFAEL RODRIGUES DE MENEZES","LEONARDO MENDES QUEIROZ","LORENA SODRE BERTUNES","MANUELA CAMARGO OLIVEIRA","MARCIO RYAN SOARES DA CONCEIÇÃO","MARIA ALICE LOPES DE SOUZA","MARIA EDUARDA PAIXÃO SOUZA","MARIANA NAOMY DE ALMEIDA SANTOS","MIGUEL RAVAGNANI","MIRELLA PEREIRA REIS","PEDRO LUÍS JAPONA BARBOSA","PEDRO NOVAIS DIAS","PIETRO GOMES ARAUJO","RAPHAELL EMERSON DE SOUZA NASCIMENTO","SOFIA MANOELA DOS SANTOS PEREIRA","SOPHIA CLARINDO FEITOSA DA CRUZ","TALLES DA SILVA SANTOS","THAYSSA RODRIGUES DA SILVA","VITOR MANOEL GUIMARÃES BONFIM","YURI MARCONDES DA SILVA","LÍVIA LIMA CARDOSO","JOÃO RAFAEL ZONTA ARAÚJO","YASMIN APARECIDA DE SOUZA SILVA"],
+"9º Ano A": ["ANA BEATRIS ALVES DE SOUZA","ANA JÚLIA FREIRE BISPO","ANNA BEATRIZ DANTAS","BRUNO KIYOTO SOMINAMI COSTA","CAUÃ PESSOA LIMA","DAVI JOSÉ LIMA SANTOS","EDUARDO SANTOS GOMES","EMILIANA HELENA JOÃO MANUEL","EMILY BEZERRA LOPES","GABRIELLE CARMO DE SANTANA","GUILHERME DE ALMEIDA SILVA LUIZ","HELOISA MARIA DE LIMA SOUZA","HENRI GABRIEL RAMOS MUNOZ","ISABELLA OLIVEIRA GOMES","ISABELLY FÉLIX DE SOUZA RODRIGUES","ISADORA DIAS COELHO","JOAO GABRIEL FERREIRA MARTINS","JOÃO PAULO MARIANO GUIMARÃES BRITO","JOAO VICTOR CLAUDIO BALDOINO","JULIANA SANTOS DE SOUZA","LAURA DOS SANTOS MARGELLI","LEONARDO SANTOS GOMES","MALLU SARAIVA DE SOUZA","MANUELA BONFIM MACEDO","MARCELA SILVA LEITE","MARIANA FERREIRA DE CARVALHO PAPA","MATHEUS HENRIQUE PONTES COSTA","MELISSA DINIZ MELLO SCHPARRINGER","MELVIN OGHENEOUO CAVALCANTE EJUONE","MIGUEL LIMA CARVALHO","OTAVIO DE ALMEIDA SILVA LUIZ","PEDRO HENRIQUE PEREIRA DA SILVA","PHELLIPE SANTOS DA SILVA","THIAGO RIBEIRO LIMA","THIEGO SOARES SILVA","VICTOR ALMEIDA SANTOS","VICTOR GABRIEL DE CASTRO SOUZA","MARIA FERNANDA ALVES CAIRES","ARTHUR APARECIDO MARQUES COSTA VITALINO"],
+"9º Ano B": ["ADRIAN VITÓRIO DE SÁ ARAÚJO","ALICE CARVALHO DE FARIAS","ANA CAROLINE MACEDO DA SILVA","ANALUCE BEATRIZ DOS SANTOS PONTES","ANNA JULIA ESPICASKI CALCANHO","BEATRIZ INFANTI LOTÉRIO DE OLIVEIRA","BEATRIZ MARQUES SANT'ANNA","EDUARDA NAVARRO DA SILVA","EDUARDO COSTA OLIVEIRA","FABRICIO DE ALMEIDA VASCONCELOS","GUILHERME BORGES FERREIRA","GUILHERME KELVYN SANTOS FAGUNDES","GUSTAVO RIBEIRO LIMA ISMAEL","ISABELLE INFANTI LOTÉRIO DE OLIVEIRA","JOAO VITOR FERREIRA SOUZA","JOSE CARLOS GOMES DA SILVA","JULIA BARRETO COSTA","KAROLLINY GABRIELA DA SILVA COSTA","LAIS RODRIGUES DOS SANTOS","LUCAS MARTINS PEREIRA","LUIZ HENRIQUE DA SILVA SOUSA","MARIA CLARA PEREIRA SILVA","MARIA FERNANDA SALDANHA DE OLIVEIRA","MARIA LUIZA MARINHO ABATE","MATHEUS ROCHA AMARAL LUZ","NICOLLY LOPES DE SOUZA","PEDRO GONCALVES MERCIER","PEDRO HENRIQUE OLIVEIRA SANTOS","RYAN MARCOLINO ALVES","SOPHIA CRISTINA ALMEIDA DE ASSIS","SOPHIA FELICIO GONÇALVES","STÉPHANIE DALESSIO FIGUEIRA SOKOLOWSKI","THALLES RONALD CAVALCANTE SILVA","THIAGO HENRIQUE DA SILVA CANDIDO","VICTOR ANDRÉ FRANÇA SANTOS","YASMIN PEREIRA CARVALHO","LUIZ HENRIQUE CARDOSO FERRAZ"],
+ "1º Ano A": ["BRUNA IASMIN GOMES COSTA MONTEIRO","EDIMAR DO NASCIMENTO INACIO","EDUARDO GREGORIO","ELOÁH LILIAN FRANÇA FREITAS","ANA LAURA PIVATO NAVEGA","GABRIEL ALEXANDRE OLIMPIO","GABRIEL MARQUES DOS SANTOS","GEOVANNA NICOLE SILVA SANTOS","GIOVANNA SOARES DE SOUZA","GUSTAVO GONZAGA","ISABEL SALES LEANDRO","JOÃO PEDRO PEREIRA NASCIMENTO","LARYSSA DO NASCIMENTO GOMES","MANUELLA DOS SANTOS FEITOSA","MARESSA LISSA MOREIRA DOS SANTOS","MARIA CLARA ESTEVES ALMEIDA DOS SANTOS","MARIA LUIZA GONÇALVES DOS SANTOS","MARIA VITÓRIA GOMES SÃO PEDRO","MATHEUS FRANCISCO DA CONCEIÇÃO SILVA","MICHAEL MARREK MAGALHÃES","MURILO FLORENTINO LEAL","NAUANY PALMEIRA MILLARES","PABLO MARCOLINO ALVES","RAPHAEL MOREIRA DE ALMEIDA","RUAN MIGUEL CHABLE RODRIGUES","SOFIA DE OLIVEIRA NASCIMENTO","TAYLLA CRYSTYNE DE CASTRO NASCIMENTO","TAYNA ARAUJO RODRIGUES","VALENTINA SILVA TEIXEIRA","ARTHUR DANIEL MACHADO AMORIM","CARLOS EDUARDO SILVA PENHA","DAVID DOS SANTOS SEARA","ANA BEATRIZ SILVA MACIEL PEREIRA","ANA JULIA SILVA MARQUES","DAVI BRUNNO DE SOUZA PEREIRA","LUCAS GABRIEL DA SILVA MOZAT","NATALIA DE ALMEIDA LOPES PEREIRA","PAMELA LIMA ESTEVES","RAFAEL LIMA ESTEVES","JULLIA MOREIRA DANTAS DE SOUZA","VICTÓRIA MARQUES BORGES"],
+"1º Ano B": ["ANDRE GUSTAVO COUTINHO DA SILVA","ANDRESSA RODRIGUES DE JESUS","ARTHUR OLIVEIRA DOS SANTOS","BÁRBARA MELO DE CARVALHO","CÁSSIO MIGUEL DOS SANTOS SILVA","ENRICO RODRIGUES DI CICCO SANCHEZ","ENZO DA SILVA RABELO","ERICKA REBEKA ALMEIDA DE OLIVEIRA","ESHLEY MACEDO ALVES","ESTER CORAGEM SOBRAL","GABRIEL GRIECO E SILVA","HENRIQUE OLIVEIRA SILVA","ISABELLY TAVARES NOGUEIRA","ISADORA DE PAULA VIEIRA","LETICIA PEREIRA DE MATOS","LEYLAINE YASMIM DE SOUZA SILVA SANTIAGO","LUÍS FELIPE GOMES DA SILVA","LUIZ FERNANDO SILVA DOS SANTOS","MILENA ARAUJO SARDEIRO","MILENA SILVA SOARES","MOISES VINICIUS RABELO DE ANDRADE","NICOLY LIMA DE SOUZA","PAULO HENRIQUE SILVA MAIA","SOPHIA RAIZA MARCOLINO VIEIRA","TALITA TIEMI HISSATOMI","WESLEY DOS SANTOS SOUZA","YASMIN VIEIRA SANTOS DE OLIVEIRA","DIEGO DOS SANTOS LIMA AFONSO","ANA LUIZA SANTANA E SILVA","ERIK MAICON ANSELMO LIMA","ISABELLA ALVES DE ALMEIDA","LAILA SILVA SANTOS","LUIS GUSTAVO OLIVEIRA MACEDO","MARIA LUISA VIEIRA DA SILVA FRANCO","RIQUELME DA SILVA PAIVA","WESHILEY RAYSSA DA SILVA CRUZ","JOÃO VICTOR DOS SANTOS VITORIANO","LAÍS ALVES DE ANDRADE","YASMIN RIBEIRO JUVENASSI","LAVINIA CAROLINE CARVALHO DOS SANTOS"],
+"1º Ano C": ["ANTHONY EDUARDO GUIMARAES VILA NOVA","AYANE VITÓRIA SANTOS GAMA","CAMILA DA CRUZ BARRETO","ENZO MARINHO CUBO","ERICK FERREIRA DOS SANTOS","IRAN VITORIANO TAVARES","ISABELLA COSTA SILVA","ISABELLY SOPHIA DE SOUZA VITORIANO","JHONATAN ALVES FREITAS","JOÃO GUILHERME FERREIRA LINO","JOÃO GUILHERME TEIXEIRA MARTINS","KAUA OLYMPIO DA SILVA","LEANDRO NUNES DA SILVA","LETICIA RODRIGUES ARAUJO","LUÍS OTÁVIO PEREIRA ALVES","MARIA ALICE AVELINO RODRIGUES","MARIA EDUARDA PRATES DE SOUZA","MARIA LUIZA VIEIRA DE MORAIS MOREIRA","MATHEUS NUNES DE LIMA PIRES","MILLENA GABRIELLY PINHEIRO DE LIMA","PEDRO CRISÓSTOMO","PIERRY DA COSTA SILVA","SOFIA SILVA FARIAS","SOPHIA VENCESLAU CRIZANTE","THOMAS EDSON FIRMINO DOS SANTOS","VALENTINA LOPES DA SILVA","VICTOR PEREIRA DA SILVA","VINÍCIUS ALVES FREITAS","VITÓRIA DOS SANTOS COSTA","YASMIN PIRES GREGORIO","GABRIEL FERREIRA DA SILVA","GEOVANNA FARIA DE FREITAS","LEONARDO SANTOS PARDINHO","MIGUEL RODRIGUES MONTEIRO SOARES","NICOLY MASTROCEZARE FRANCO DE MORAES","PEDRO DE ANDRADE ALEXANDRE","TAIZA DOS SANTOS GUERRA","ISABELA CRISTINA PEREIRA DA SILVA"],
+"2º Ano C": ["ALESSANDRA DE CARVALHO ALVES","ANA VITÓRIA COSTA DA SILVA","BRUNA LEONARDO DA SILVA","DAVI AUGUSTO DE OLIVEIRA MARTINS","EVELLYN CAROLINE VIEIRA DOS SANTOS","GUILHERME FELYPE PEREIRA DA SILVA","KEVEN NOLETO DE SOUZA","LARISSA LEONARDO DA SILVA","LORRAYNE KAROLYNE ALMEIDA MACHADO","MARCELO SILVA DE MACEDO","NICOLLI DOS SANTOS SILVA","SARA RAPHAELY CARDOSO DOS SANTOS","SOFIA SCHAEFER GOMES","STEFANI RIBEIRO STORARI","VICTOR HUGO GUIMARÃES ROCHA","YAGO PEREIRA DA SILVA","YELIANNIS JOSEFINA FARIAS MORA","SOPHIA VITORIA GOMES MATTOS DA SILVA","JOAO PEDRO MOURA TEIXEIRA","GABRIEL MATIAS COSTA"],
+"2º Ano ADM": ["AMANDA ROCHA ALVES","ANA LUCIA FERREIRA DO NASCIMENTO","ANA LUIZA DOS SANTOS","ANNA JÚLIA OLIVEIRA TIGRE","ANTONY ISRAEL VIEIRA CABRAL","DJOUNICA DONNA DJARABIE CÉNATUS","FELIPE NAVARRO DO NASCIMENTO","LAURA GONÇALVES MACHADO","MANUELLY DE OLIVEIRA SANTANA","MARIA CLARA OLIVEIRA COSTA","MARIA SOFIA LOPES SILVA","MARIANE DE JESUS GOES","MICHAEL CRUZ DOS SANTOS","PAOLA DA SILVA ANTUNES ARAUJO","PEDRO MORENO VIEIRA GONZAGA","YASMIN LIMA OLIVEIRA","RYAN ARAUJO ARCANJO","MATHEUS DE SÁ SILVA"],
+"2º Ano DES": ["BRUNO VENANCIO PIRES","BRYAN REZENDE DE SOUZA","CARLOS EDUARDO SIMÕES DOS SANTOS","DAVI LUCAS SOUZA SILVA","ENZO RODRIGUES DI CICCO SANCHEZ","FRANCIELE DE SOUZA LOPES","GABRIEL MOISES CAMPOS DE SOUSA","GIOVANNA BRAGA DE NATALE","GUILHERME HENRIQUE RODRIGUES SOARES","GUSTAVO DE LARA MENDONÇA","HIAN MIRANDA DE OLIVEIRA","JOÃO PEDRO PEREIRA BARELLA","LUANA LOURENÇO ARAÚJO","LUCAS AMORIM DE PAULA","MARIA EDUARDA OLIVEIRA DOS SANTOS","MARTHA ESTTER DOS SANTOS PONTES","MATEUS SILVA SANTOS","MATHEUS CANDIDO GONCALVES REIS","OTAVIO ANTONIO FREIRE OSORIO","PAULO RICHARD MARTINS DAMASCENA SILVEIRA","PEDRO HENRIQUE COSTA PEREIRA","PEDRO HENRIQUE FREITAS DIAS","PEDRO MIGUEL OLIVEIRA AZEVEDO DA SILVA","PEDRO PENTEADO RESENDE DOS ANJOS MIRANDA","RICHARD DE BRITO AMARAL","RICHARD MIGUEL REBOUÇAS MANUEL","VICTORIA RODRIGUES DOS SANTOS","YAN KENJI HORIBE GOMES","BERNARDO GRAF GALVÃO"],
+"3º Ano C": ["BEATRIZ BARRETO COSTA","CAMILLY EXALTAÇÃO LIMA","DANIEL HENRIQUE DOS SANTOS GOUVEIA","EMILLY KIMBERLY MELLO DOS SANTOS","GERDA ELLEN DA SILVA LIMA","HELOISA BERNI ALVES","LUAN DE OLIVEIRA LIMA","MANUELA BARRETO","MARCOS SILVA DE MACEDO","MARIA LUIZA DE CASTRO FREITAS","NATHÁLIA FREITAS MONTEIRO ALVES","THAYNARA FARIA DOS SANTOS","SABRINA MAYSA MARCOLINO VIEIRA"],
+"3º Ano ADM": ["ANA CAROLINA GRAF GALVÃO","ANA CAROLINA SANTANA DOS SANTOS","ANA KAROLINE SOARES DE SOUZA","CÍCERO MIGUEL DA SILVA JÚNIOR","DANIEL YAGO DOS SANTOS MARTINS","DANIELLE MARTINS DE LIMA","FABRICIO PACHECO DOS SANTOS","GUILHERME ALVES ALENCAR","GUILHERME DA SILVA VIANA","JULIA GONÇALVES MACHADO","MARIA GABRIELA DA SILVA ANDRADE","MARIANNA RIBEIRO TRALDI","MAYSA MOTA DE OLIVEIRA","MELYSSA PLUMARI NOBRE","NICOLAS ROCHA SILVA FERREIRA","THAMARA HELLEN PRATA DE CASTRO","THIAGO DE OLIVEIRA AMORELLI","VICTOR MAIA VIEIRA"],
+"3º Ano DES": ["ANA CLARA BASSETTI ORLANDO","DALTON ALMEIDA CARDOSO","EDUARDO MENDES QUEIROZ","GABRIELLA DOS SANTOS COSTA","KAUA FELISBERTO GUIMARAES","KAUAN MATOS NASCIMENTO","LARISSA NOLÊTO DE SOUZA","MARIA EDUARDA SANTOS DA SILVA","RAPHAEL HENRIQUE BARBOSA LAGE","SAIDA JADYDI"],
 };
 
 // ============ CLOCK ============
@@ -1310,10 +1332,16 @@ setInterval(updateClock, 1000);
 
 // ============ SERVER BADGE ============
 function updateServerBadge() {
-  const nome = document.getElementById('servidorNome').value;
+  const sel = document.getElementById('servidorNome');
+  const nome = sel.value;
   const cargo = document.getElementById('servidorCargo').value;
+  // Preencher RG automaticamente
+  const opt = sel.options[sel.selectedIndex];
+  const rg = opt ? (opt.getAttribute('data-rg') || '') : '';
+  const rgField = document.getElementById('servidorRG');
+  if (rgField) rgField.value = rg ? rg : '';
   if (nome) {
-    const shortName = nome.split(' ')[0];
+    const shortName = sel.options[sel.selectedIndex].text.split(' ')[0];
     document.getElementById('serverBadge').textContent = shortName + (cargo ? ' · ' + cargo : '');
   } else {
     document.getElementById('serverBadge').textContent = 'Nenhum servidor identificado';
@@ -1321,12 +1349,11 @@ function updateServerBadge() {
 }
 
 // ============ TABS ============
-function showTab(tab, el) {
+function showTab(tab) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('page-' + tab).classList.add('active');
-  var btn = el ? el.closest('.tab-btn') : document.querySelector('.tab-btn[data-tab="' + tab + '"]');
-  if (btn) btn.classList.add('active');
+  event.target.closest('.tab-btn').classList.add('active');
   if (tab === 'dashboard') updateDashboard();
   if (tab === 'historico') renderHistorico();
   if (tab === 'relatorio') populateRelFiltros();
@@ -1418,66 +1445,46 @@ document.querySelectorAll('input[name="resultado"], input[name="etapa"]').forEac
   });
 });
 
-// Global lookup for student selection (avoids JSON in onclick HTML attributes)
-var _alunosLookup = [];
-
 function renderAlunoList(serie) {
-  const raw = alunosDB[serie] || [];
   const list = document.getElementById('alunoList');
   const turmaSel = document.querySelector('input[name="turma"]:checked');
   const busca = document.getElementById('buscarAluno').value.toLowerCase();
 
-  // Normalize: EM entries are objects, EF entries are strings
-  const alunos = raw.map(function(a) {
-    if (typeof a === 'object') return a;
-    const t = turmaSel ? turmaSel.value : 'A';
-    return { nome: a, turma: t, endereco: '' };
-  });
+  // Chaves do alunosDB: "6º Ano A", "6º Ano B", "1º Ano A", "2º Ano C", etc.
+  // Radio série value: "6º Ano", "1º Ano" etc.
+  // Monta lista de chaves a exibir
+  const sufixos = ['A','B','C','ADM','DES'];
+  let chaves;
+  if (turmaSel) {
+    const chaveExata = serie + ' ' + turmaSel.value;
+    chaves = alunosDB[chaveExata] ? [chaveExata]
+           : sufixos.map(s => serie + ' ' + s).filter(k => alunosDB[k]);
+  } else {
+    chaves = sufixos.map(s => serie + ' ' + s).filter(k => alunosDB[k]);
+  }
 
-  // Filter by search text; for EM also filter by turma if selected
-  const isEM = raw.length > 0 && typeof raw[0] === 'object';
-  let filtrados = alunos.filter(function(a) {
-    const matchBusca = !busca || a.nome.toLowerCase().includes(busca);
-    const matchTurma = !isEM || !turmaSel || a.turma === turmaSel.value;
-    return matchBusca && matchTurma;
-  });
-
-  if (filtrados.length === 0) {
-    list.innerHTML = '<div style="padding:20px;text-align:center;color:#888;font-size:13px">Nenhum aluno encontrado.</div>';
+  if (chaves.length === 0) {
+    list.innerHTML = '<div style="padding:20px;text-align:center;color:#888;font-size:13px">Nenhuma turma encontrada para esta série.</div>';
     return;
   }
 
-  // Store in global lookup — use index as safe onclick parameter
-  _alunosLookup = filtrados;
-
-  // Group by turma for display
-  const grupos = {};
-  filtrados.forEach(function(a, idx) { a._idx = idx; });
-  filtrados.forEach(function(a) {
-    if (!grupos[a.turma]) grupos[a.turma] = [];
-    grupos[a.turma].push(a);
-  });
-
   let html = '';
-  const turmaKeys = Object.keys(grupos).sort();
-  turmaKeys.forEach(function(t) {
-    if (turmaKeys.length > 1) {
-      html += '<div style="padding:6px 14px;background:var(--cinza-claro);font-size:11px;font-weight:700;color:var(--cinza-medio);text-transform:uppercase;letter-spacing:0.06em;">Turma ' + t + ' (' + grupos[t].length + ')</div>';
-    }
-    grupos[t].forEach(function(a) {
-      html += '<div class="aluno-item" onclick="selecionarAlunoIdx(' + a._idx + ')">'
-        + '<span>' + a.nome + '</span>'
-        + '<span style="font-size:11px;color:#888;background:var(--cinza-claro);padding:2px 8px;border-radius:10px">Turma ' + a.turma + '</span>'
+  chaves.forEach(function(chave) {
+    const nomes = alunosDB[chave] || [];
+    const filtrados = nomes.filter(n => !busca || n.toLowerCase().includes(busca));
+    if (!filtrados.length) return;
+    html += '<div style="padding:6px 14px;background:var(--cinza-claro);font-size:11px;font-weight:700;color:var(--cinza-medio);text-transform:uppercase;letter-spacing:0.06em;">'
+          + chave + ' — ' + filtrados.length + ' aluno(s)</div>';
+    filtrados.forEach(function(nome) {
+      const obj = { nome: nome, turma: chave };
+      html += '<div class="aluno-item" onclick="selecionarAlunoObj(' + JSON.stringify(obj) + ')">'
+        + '<span>' + nome + '</span>'
+        + '<span style="font-size:11px;color:#888;background:var(--cinza-claro);padding:2px 8px;border-radius:10px">' + chave + '</span>'
         + '</div>';
     });
   });
-  list.innerHTML = html;
-}
 
-function selecionarAlunoIdx(idx) {
-  var a = _alunosLookup[idx];
-  if (!a) return;
-  selecionarAlunoObj(a);
+  list.innerHTML = html || '<div style="padding:20px;text-align:center;color:#888;font-size:13px">Nenhum aluno encontrado.</div>';
 }
 
 function filtrarAlunos() {
@@ -1486,23 +1493,13 @@ function filtrarAlunos() {
 }
 
 function selecionarAlunoObj(alunoObj) {
-  const serie = document.querySelector('input[name="serie"]:checked');
   alunoSelecionado = { nome: alunoObj.nome, turma: alunoObj.turma };
   document.getElementById('alunoSelecionadoInfo').style.display = 'block';
   document.getElementById('alunoSelecionadoNome').textContent = alunoObj.nome;
-  document.getElementById('alunoSelecionadoSerie').textContent = (serie ? serie.value : '') + ' — Turma ' + alunoObj.turma;
-  // Pre-fill address from DB if available
-  if (alunoObj.endereco) {
-    document.getElementById('enderecoAluno').value = alunoObj.endereco;
-  }
-  // Check for previous records
+  document.getElementById('alunoSelecionadoSerie').textContent = alunoObj.turma;
   const prev = registros.filter(function(r){ return r.aluno === alunoObj.nome; });
   if (prev.length > 0) {
-    const last = prev[prev.length - 1];
-    document.getElementById('nomeResponsavel').value = last.responsavel || '';
-    document.getElementById('telResponsavel').value = last.telResponsavel || '';
-    if (!alunoObj.endereco) document.getElementById('enderecoAluno').value = last.endereco || '';
-    notify('📋 ' + prev.length + ' registro(s) anterior(es) carregado(s).', 'info');
+    notify('📋 ' + prev.length + ' registro(s) anterior(es) encontrado(s).', 'info');
   }
 }
 
@@ -1566,9 +1563,7 @@ function buildResumo() {
       <div>
         <div class="card-title">Aluno</div>
         <p><strong>${alunoSelecionado ? alunoSelecionado.nome : '—'}</strong></p>
-        <p style="font-size:12px;color:#888">${serie ? serie.value : ''} — Turma ${alunoSelecionado ? alunoSelecionado.turma : ''}</p>
-        <p style="font-size:12px;color:#888">Responsável: ${document.getElementById('nomeResponsavel').value || '—'}</p>
-        <p style="font-size:12px;color:#888">Endereço: ${document.getElementById('enderecoAluno').value || '—'}</p>
+        <p style="font-size:12px;color:#888">${alunoSelecionado ? alunoSelecionado.turma : ''}</p>
       </div>
       <div>
         <div class="card-title">Frequência</div>
@@ -1624,12 +1619,13 @@ function salvarRegistro() {
     dataRegistro: document.getElementById('dataRegistro').value || new Date().toISOString().split('T')[0],
     servidor: document.getElementById('servidorNome').value,
     cargo: document.getElementById('servidorCargo').value,
+    rg: document.getElementById('servidorRG') ? document.getElementById('servidorRG').value : '',
     aluno: alunoSelecionado ? alunoSelecionado.nome : '',
     serie: serie ? serie.value : '',
     turma: alunoSelecionado ? alunoSelecionado.turma : '',
-    responsavel: document.getElementById('nomeResponsavel').value,
-    telResponsavel: document.getElementById('telResponsavel').value,
-    endereco: document.getElementById('enderecoAluno').value,
+    responsavel: '',
+    telResponsavel: '',
+    endereco: '',
     faltasBimestre: faltas,
     aulasBimestre: aulas,
     pctFaltas: pct,
@@ -2155,7 +2151,8 @@ function renderListaCadastrados() {
 function renderResumoBanco() {
   var el = document.getElementById('resumoBanco');
   if (!el) return;
-  var series = ['6º Ano EF','7º Ano EF','8º Ano EF','9º Ano EF',
+  var series = ['1º Ano EF','2º Ano EF','3º Ano EF','4º Ano EF','5º Ano EF',
+                '6º Ano EF','7º Ano EF','8º Ano EF','9º Ano EF',
                 '1ª Série EM','2ª Série EM','3ª Série EM'];
   var total = 0;
   var html = '';
