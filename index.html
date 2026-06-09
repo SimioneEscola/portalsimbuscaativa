@@ -1476,11 +1476,10 @@ function renderAlunoList(serie) {
     html += '<div style="padding:6px 14px;background:var(--cinza-claro);font-size:11px;font-weight:700;color:var(--cinza-medio);text-transform:uppercase;letter-spacing:0.06em;">'
           + chave + ' — ' + filtrados.length + ' aluno(s)</div>';
     filtrados.forEach(function(nome) {
-      const obj = { nome: nome, turma: chave };
-      html += '<div class="aluno-item" onclick="selecionarAlunoObj(' + JSON.stringify(obj) + ')">'
-        + '<span>' + nome + '</span>'
-        + '<span style="font-size:11px;color:#888;background:var(--cinza-claro);padding:2px 8px;border-radius:10px">' + chave + '</span>'
-        + '</div>';
+      // Escapar aspas simples para não quebrar o atributo onclick
+      const nomeEsc = nome.replace(/'/g, "\'");
+      const chaveEsc = chave.replace(/'/g, "\'");
+      html += '<div class="aluno-item" onclick="selecionarAlunoObj({nome:\'' + nomeEsc + '\',turma:\'' + chaveEsc + '\'})">'        + '<span>' + nome + '</span>'        + '<span style="font-size:11px;color:#888;background:var(--cinza-claro);padding:2px 8px;border-radius:10px">' + chave + '</span>'        + '</div>';
     });
   });
 
