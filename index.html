@@ -610,6 +610,60 @@ tbody tr:last-child td { border-bottom: none; }
   .tab-btn { padding: 14px 14px; font-size: 12px; }
 }
 </style>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+<script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>
+/* ============ MAPA TERRITORIAL ============ */
+#page-mapa.page { padding: 0; max-width: 100%; }
+.map-wrap { display: grid; grid-template-columns: 320px 1fr 340px; height: calc(100vh - 64px - 49px); background: var(--cinza-claro); }
+.map-side { background: white; border-right: 1px solid var(--borda); overflow-y: auto; padding: 18px; }
+.map-side.right { border-right: none; border-left: 1px solid var(--borda); }
+.map-side h3 { font-family: 'Playfair Display', serif; font-size: 15px; margin-bottom: 12px; color: var(--cinza-escuro); display:flex; align-items:center; gap:8px; }
+.map-side h4 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--cinza-medio); margin: 18px 0 8px; font-weight: 600;}
+#mapaTerritorial { width: 100%; height: 100%; }
+.filter-chip { display:inline-flex; align-items:center; gap:6px; padding:6px 12px; margin:3px; border-radius:20px; background:var(--cinza-claro); border:1px solid var(--borda); font-size:12px; cursor:pointer; transition:.2s; user-select:none;}
+.filter-chip:hover { background: var(--verde-bg); }
+.filter-chip.on { background: var(--verde); color:white; border-color:var(--verde); }
+.legend-dot { width:12px; height:12px; border-radius:50%; display:inline-block; margin-right:6px; vertical-align:middle; }
+.stat-row { display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px dashed var(--borda); font-size:13px;}
+.stat-row strong { color: var(--cinza-escuro); }
+.alert-card { padding:10px 12px; border-radius:10px; margin-bottom:8px; font-size:12.5px; border-left:4px solid; }
+.alert-card.crit { background:var(--vermelho-bg); border-color:var(--vermelho); }
+.alert-card.warn { background:var(--amarelo-bg); border-color:var(--amarelo); }
+.alert-card.info { background:var(--azul-bg); border-color:var(--azul); }
+.map-toolbar { position:absolute; top:14px; right:360px; z-index:500; background:white; border-radius:10px; box-shadow:var(--sombra); padding:6px; display:flex; gap:4px;}
+.map-toolbar button { border:none; background:transparent; padding:8px 12px; border-radius:6px; cursor:pointer; font-size:13px; font-family:inherit;}
+.map-toolbar button.on { background: var(--cinza-escuro); color:white;}
+.aluno-popup { font-family:'DM Sans',sans-serif; min-width:240px;}
+.aluno-popup h4 { margin:0 0 6px; font-size:14px;}
+.aluno-popup .row { font-size:12px; color:#555; margin:2px 0;}
+.aluno-popup button { margin-top:8px; padding:6px 12px; background:var(--verde); color:white; border:none; border-radius:6px; cursor:pointer; font-size:12px;}
+.autocomplete-list { position:absolute; background:white; border:1px solid var(--borda); border-radius:8px; box-shadow:var(--sombra); max-height:200px; overflow-y:auto; z-index:1000; width:100%;}
+.autocomplete-list div { padding:8px 12px; cursor:pointer; font-size:13px; border-bottom:1px solid #f0f0f7;}
+.autocomplete-list div:hover { background: var(--verde-bg);}
+.timeline { border-left:2px solid var(--verde); padding-left:14px; margin-left:6px;}
+.timeline-item { position:relative; padding:6px 0 14px 8px; font-size:13px;}
+.timeline-item::before { content:''; position:absolute; left:-21px; top:10px; width:10px; height:10px; border-radius:50%; background:var(--verde);}
+.timeline-item .when { font-size:11px; color:#888; display:block;}
+.fab-map { position:fixed; bottom:20px; right:20px; z-index:1000;}
+.ivte-bar { height:8px; background:var(--cinza-claro); border-radius:4px; overflow:hidden; margin-top:4px;}
+.ivte-fill { height:100%; transition:width .4s;}
+@media (max-width: 1024px) {
+  .map-wrap { grid-template-columns: 1fr; grid-template-rows: auto 1fr auto; }
+  .map-side { max-height: 35vh; }
+  .map-toolbar { right: 14px; }
+}
+</style>
 </head>
 <body>
 
@@ -647,6 +701,9 @@ tbody tr:last-child td { border-bottom: none; }
   </button>
   <button class="tab-btn" onclick="showTab('cadastro')">
     ➕ Novo Aluno
+  </button>
+  <button class="tab-btn" onclick="showTab('mapa')">
+    🗺️ Mapa Territorial
   </button>
 </nav>
 
@@ -825,12 +882,8 @@ tbody tr:last-child td { border-bottom: none; }
 
     <div class="grid-2">
       <div>
-        <label>Total de Faltas no Bimestre *</label>
-        <input type="number" id="faltasBimestre" min="0" max="100" placeholder="0" oninput="calcRisco()">
-      </div>
-      <div>
-        <label>Total de Aulas no Bimestre *</label>
-        <input type="number" id="aulasBimestre" min="1" max="200" placeholder="50" oninput="calcRisco()">
+        <label>Percentual de Faltas no Bimestre (%) *</label>
+        <input type="number" id="faltasBimestre" min="0" max="100" step="0.1" placeholder="0" oninput="calcRisco()">
       </div>
     </div>
 
@@ -893,6 +946,9 @@ tbody tr:last-child td { border-bottom: none; }
       <label class="check-item"><input type="checkbox" value="Desinteresse / omissão do responsável"> 🙈 Omissão do responsável</label>
       <label class="check-item"><input type="checkbox" value="Gravidez na adolescência"> 🤰 Gravidez</label>
       <label class="check-item"><input type="checkbox" value="Uso de drogas / substâncias"> ⚠️ Drogas / substâncias</label>
+      <label class="check-item"><input type="checkbox" value="Vulnerabilidade psicológica"> 🧠 Vulnerabilidade psicológica</label>
+      <label class="check-item"><input type="checkbox" value="Em conflito com a Lei"> ⚖️ Em conflito com a Lei</label>
+      <label class="check-item"><input type="checkbox" value="Cuida de ente da família"> 🧑‍🦽 Cuida de ente da família</label>
       <label class="check-item"><input type="checkbox" value="Não apresentou justificativa"> ❓ Sem justificativa</label>
     </div>
 
@@ -994,7 +1050,35 @@ tbody tr:last-child td { border-bottom: none; }
     </div>
     <div style="margin-top:20px;display:flex;gap:12px;align-items:center">
       <button class="btn btn-primary" onclick="cadastrarAluno()">➕ Cadastrar Aluno</button>
-      <span style="font-size:12px;color:#888">O aluno será adicionado à lista e ficará disponível para registro de busca ativa imediatamente.</span>
+      <span style="font-size:12px;color:#888">O aluno será adicionado à lista e geocodificado automaticamente.</span>
+    </div>
+    <h4 style="margin-top:24px;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--cinza-medio)">📍 Endereço Completo (geocodificação automática)</h4>
+    <div class="grid-2" style="margin-top:10px;position:relative">
+      <div style="position:relative">
+        <label>Logradouro (Rua/Av) — autocomplete</label>
+        <input type="text" id="cad-logradouro" autocomplete="off" placeholder="Digite o nome da rua..." oninput="autocompleteEndereco(this)">
+        <div id="cad-autocomplete" class="autocomplete-list" style="display:none"></div>
+      </div>
+      <div>
+        <label>Número</label>
+        <input type="text" id="cad-numero" placeholder="123">
+      </div>
+    </div>
+    <div class="grid-2" style="margin-top:10px">
+      <div><label>Complemento</label><input type="text" id="cad-complemento" placeholder="Apto, casa..."></div>
+      <div><label>Bairro</label><input type="text" id="cad-bairro"></div>
+    </div>
+    <div class="grid-2" style="margin-top:10px">
+      <div><label>Cidade</label><input type="text" id="cad-cidade" value="São Paulo"></div>
+      <div><label>CEP</label><input type="text" id="cad-cep" placeholder="00000-000"></div>
+    </div>
+    <div class="grid-2" style="margin-top:10px">
+      <div><label>Latitude</label><input type="text" id="cad-lat" readonly placeholder="(auto)"></div>
+      <div><label>Longitude</label><input type="text" id="cad-lng" readonly placeholder="(auto)"></div>
+    </div>
+    <div style="margin-top:10px;display:flex;gap:8px;align-items:center">
+      <label style="display:flex;align-items:center;gap:6px;font-size:13px"><input type="checkbox" id="cad-confirmado"> Localização confirmada</label>
+      <button type="button" class="btn btn-secondary" onclick="geocodificarAgora()" style="margin-left:auto;font-size:12px;padding:6px 12px">🌐 Geocodificar agora</button>
     </div>
   </div>
 
@@ -1291,6 +1375,91 @@ tbody tr:last-child td { border-bottom: none; }
 </div>
 
 <!-- FLOATING SAVE -->
+
+<!-- ===================== PAGE: MAPA TERRITORIAL ===================== -->
+<div id="page-mapa" class="page">
+  <div class="map-wrap">
+    <!-- LEFT: FILTERS -->
+    <aside class="map-side">
+      <h3>🎯 Filtros Territoriais</h3>
+      <h4>Segmento</h4>
+      <div id="filter-segmento">
+        <span class="filter-chip on" data-f="seg" data-v="todos">Todos</span>
+        <span class="filter-chip" data-f="seg" data-v="fund">Ens. Fund.</span>
+        <span class="filter-chip" data-f="seg" data-v="medio">Ens. Médio</span>
+      </div>
+      <h4>Série / Turma</h4>
+      <select id="filter-turma" onchange="aplicarFiltros()" style="width:100%;padding:8px;border:1px solid var(--borda);border-radius:6px">
+        <option value="">— Todas —</option>
+      </select>
+      <h4>Status</h4>
+      <div id="filter-status">
+        <span class="filter-chip on" data-f="st" data-v="todos">Todos</span>
+        <span class="filter-chip" data-f="st" data-v="regular"><span class="legend-dot" style="background:#22c55e"></span>Regular</span>
+        <span class="filter-chip" data-f="st" data-v="atencao"><span class="legend-dot" style="background:#facc15"></span>Atenção</span>
+        <span class="filter-chip" data-f="st" data-v="busca"><span class="legend-dot" style="background:#f97316"></span>Busca Ativa</span>
+        <span class="filter-chip" data-f="st" data-v="critico"><span class="legend-dot" style="background:#dc2626"></span>Crítico</span>
+        <span class="filter-chip" data-f="st" data-v="rede"><span class="legend-dot" style="background:#1f2937"></span>Rede Proteção</span>
+        <span class="filter-chip" data-f="st" data-v="encerrado"><span class="legend-dot" style="background:#3b82f6"></span>Encerrado</span>
+      </div>
+      <h4>Risco</h4>
+      <div id="filter-risco">
+        <span class="filter-chip on" data-f="risk" data-v="todos">Todos</span>
+        <span class="filter-chip" data-f="risk" data-v="alto">Alto</span>
+        <span class="filter-chip" data-f="risk" data-v="medio">Médio</span>
+        <span class="filter-chip" data-f="risk" data-v="baixo">Baixo</span>
+      </div>
+      <h4>Sem contato há</h4>
+      <div id="filter-contato">
+        <span class="filter-chip on" data-f="ct" data-v="0">— qualquer —</span>
+        <span class="filter-chip" data-f="ct" data-v="7">7+ dias</span>
+        <span class="filter-chip" data-f="ct" data-v="15">15+ dias</span>
+        <span class="filter-chip" data-f="ct" data-v="30">30+ dias</span>
+      </div>
+      <h4>Encaminhamentos</h4>
+      <div id="filter-enc">
+        <span class="filter-chip" data-f="enc" data-v="ct">Conselho Tutelar</span>
+        <span class="filter-chip" data-f="enc" data-v="rp">Rede Proteção</span>
+        <span class="filter-chip" data-f="enc" data-v="ti">Tutoria Intensiva</span>
+      </div>
+      <h4 style="margin-top:24px">🚐 Roteiro de Visitas</h4>
+      <p style="font-size:12px;color:#666;margin-bottom:8px">Clique nos alunos no mapa para adicioná-los ao roteiro.</p>
+      <div id="roteiro-list" style="font-size:12px;background:var(--cinza-claro);border-radius:8px;padding:10px;min-height:60px"></div>
+      <button class="btn btn-primary" style="width:100%;margin-top:8px" onclick="gerarRoteiro()">🗺️ Gerar Roteiro</button>
+      <button class="btn btn-secondary" style="width:100%;margin-top:6px" onclick="limparRoteiro()">Limpar</button>
+    </aside>
+
+    <!-- CENTER: MAP -->
+    <div style="position:relative">
+      <div id="mapaTerritorial"></div>
+      <div class="map-toolbar">
+        <button id="modeMarkers" class="on" onclick="setMapMode('markers')">📍 Marcadores</button>
+        <button id="modeHeat" onclick="setMapMode('heat')">🔥 Calor</button>
+        <button id="btnGeoLote" onclick="geocodificarTodos()" title="Geocodificar todos os alunos sem coordenadas" style="background:#1a7a4a;color:white">🌐 Geocodificar todos</button>
+        <button onclick="exportMapaPDF()" title="PDF do Mapa">📄 PDF</button>
+        <button onclick="exportMapaImg()" title="Imagem do Mapa">🖼️ Imagem</button>
+        <button onclick="exportRelXLSX()" title="Excel">📊 Excel</button>
+      </div>
+      <div id="mapStatus" style="position:absolute;left:10px;bottom:10px;background:rgba(255,255,255,.95);padding:8px 12px;border-radius:8px;font-size:12px;box-shadow:0 2px 8px rgba(0,0,0,.15);z-index:500;font-weight:600"></div>
+    </div>
+
+    <!-- RIGHT: STATS + ALERTS + TIMELINE -->
+    <aside class="map-side right">
+      <h3>📊 Estatísticas Territoriais</h3>
+      <div id="stats-territorial"></div>
+
+      <h3 style="margin-top:24px">⚠️ Análise Inteligente</h3>
+      <div id="alertas-territoriais"></div>
+
+      <h3 style="margin-top:24px">📈 Bairros — Visão Geral</h3>
+      <div id="bairros-list"></div>
+
+      <h3 style="margin-top:24px">👤 Detalhes do Aluno</h3>
+      <div id="aluno-detalhes" style="font-size:13px;color:#666">Selecione um aluno no mapa para ver o prontuário resumido e a linha do tempo.</div>
+    </aside>
+  </div>
+</div>
+
 <button id="floatSave" onclick="salvarRegistro()">💾 Salvar Registro</button>
 
 <script>
@@ -1399,10 +1568,9 @@ function validarStep2() {
 
 function validarStep3() {
   const faltas = document.getElementById('faltasBimestre').value;
-  const aulas = document.getElementById('aulasBimestre').value;
   const acoes = document.querySelectorAll('#tipoAcaoGrid input:checked');
   const resultado = document.querySelector('input[name="resultado"]:checked');
-  if (!faltas || !aulas) { notify('⚠️ Informe o número de faltas e de aulas.', 'warning'); return false; }
+  if (faltas === '' || faltas === null) { notify('⚠️ Informe o percentual de faltas.', 'warning'); return false; }
   if (acoes.length === 0) { notify('⚠️ Selecione ao menos uma ação realizada.', 'warning'); return false; }
   if (!resultado) { notify('⚠️ Selecione o resultado do contato.', 'warning'); return false; }
   return true;
@@ -1476,10 +1644,11 @@ function renderAlunoList(serie) {
     html += '<div style="padding:6px 14px;background:var(--cinza-claro);font-size:11px;font-weight:700;color:var(--cinza-medio);text-transform:uppercase;letter-spacing:0.06em;">'
           + chave + ' — ' + filtrados.length + ' aluno(s)</div>';
     filtrados.forEach(function(nome) {
-      // Escapar aspas simples para não quebrar o atributo onclick
-      const nomeEsc = nome.replace(/'/g, "\'");
-      const chaveEsc = chave.replace(/'/g, "\'");
-      html += '<div class="aluno-item" onclick="selecionarAlunoObj({nome:\'' + nomeEsc + '\',turma:\'' + chaveEsc + '\'})">'        + '<span>' + nome + '</span>'        + '<span style="font-size:11px;color:#888;background:var(--cinza-claro);padding:2px 8px;border-radius:10px">' + chave + '</span>'        + '</div>';
+      const obj = { nome: nome, turma: chave };
+      html += '<div class="aluno-item" onclick="selecionarAlunoObj(' + JSON.stringify(obj).replace(/"/g,'&quot;') + ')">'
+        + '<span>' + nome + '</span>'
+        + '<span style="font-size:11px;color:#888;background:var(--cinza-claro);padding:2px 8px;border-radius:10px">' + chave + '</span>'
+        + '</div>';
     });
   });
 
@@ -1508,9 +1677,7 @@ function selecionarAluno(nome, turma) {
 
 // ============ RISK CALCULATION ============
 function calcRisco() {
-  const faltas = parseInt(document.getElementById('faltasBimestre').value) || 0;
-  const aulas = parseInt(document.getElementById('aulasBimestre').value) || 1;
-  const pct = (faltas / aulas) * 100;
+  const pct = parseFloat(document.getElementById('faltasBimestre').value) || 0;
 
   document.getElementById('riscoWrap').style.display = 'block';
   const badge = document.getElementById('riscoBadge');
@@ -1543,9 +1710,7 @@ function buildResumo() {
   const acoes = [...document.querySelectorAll('#tipoAcaoGrid input:checked')].map(i => i.value);
   const justs = [...document.querySelectorAll('#justGrid input:checked')].map(i => i.value);
   const docs = [...document.querySelectorAll('#step3 .check-grid:last-of-type input:checked')].map(i => i.value);
-  const faltas = document.getElementById('faltasBimestre').value;
-  const aulas = document.getElementById('aulasBimestre').value;
-  const pct = aulas ? ((faltas/aulas)*100).toFixed(1) : '—';
+  const pct = (parseFloat(document.getElementById('faltasBimestre').value) || 0).toFixed(1);
 
   let nivelRisco = 'Regular';
   let nivelClasse = 'badge-ok';
@@ -1566,7 +1731,7 @@ function buildResumo() {
       </div>
       <div>
         <div class="card-title">Frequência</div>
-        <p>${faltas} faltas de ${aulas} aulas = <strong>${pct}%</strong></p>
+        <p><strong>${pct}%</strong> de faltas no bimestre</p>
         <span class="badge-status ${nivelClasse}">${nivelRisco}</span>
       </div>
       <div>
@@ -1605,9 +1770,7 @@ function salvarRegistro() {
   const acoes = [...document.querySelectorAll('#tipoAcaoGrid input:checked')].map(i => i.value);
   const justs = [...document.querySelectorAll('#justGrid input:checked')].map(i => i.value);
   const docs = [...document.querySelectorAll('#step3 .check-grid:last-of-type input:checked')].map(i => i.value);
-  const faltas = parseInt(document.getElementById('faltasBimestre').value) || 0;
-  const aulas = parseInt(document.getElementById('aulasBimestre').value) || 50;
-  const pct = ((faltas / aulas) * 100).toFixed(1);
+  const pct = (parseFloat(document.getElementById('faltasBimestre').value) || 0).toFixed(1);
 
   let risco = 'regular';
   if (parseFloat(pct) >= 10) risco = 'crítico';
@@ -1625,8 +1788,8 @@ function salvarRegistro() {
     responsavel: '',
     telResponsavel: '',
     endereco: '',
-    faltasBimestre: faltas,
-    aulasBimestre: aulas,
+    faltasBimestre: pct,
+    aulasBimestre: '',
     pctFaltas: pct,
     risco,
     acoes,
@@ -2182,6 +2345,548 @@ alunosManuais.forEach(function(a) {
 // ============ INIT ============
 document.getElementById('dataRegistro').value = new Date().toISOString().split('T')[0];
 renderHistorico();
+
+
+/* =====================================================================
+   MÓDULO: MAPA TERRITORIAL + FIREBASE + GEOCODIFICAÇÃO + IVTE + ROTEIRO
+   ===================================================================== */
+
+// ---------- Firebase ----------
+const firebaseConfig = {
+  apiKey: "AIzaSyATuLw6W6xJXzY4WkyLgvztsVmSfxLU4uY",
+  authDomain: "portal-sim-busca-ativa.firebaseapp.com",
+  databaseURL: "https://portal-sim-busca-ativa-default-rtdb.firebaseio.com",
+  projectId: "portal-sim-busca-ativa",
+  storageBucket: "portal-sim-busca-ativa.firebasestorage.app",
+  messagingSenderId: "788450668441",
+  appId: "1:788450668441:web:8ad415bb7b1894ee1ded08"
+};
+let fbApp, fbDB, fbReady=false;
+try {
+  fbApp = firebase.initializeApp(firebaseConfig);
+  fbDB = firebase.database();
+  fbReady = true;
+  console.log('[Firebase] conectado');
+} catch(e){ console.warn('[Firebase] falhou', e); }
+
+// ---------- Estado central ----------
+window.alunosMap = {};   // { id: { nome, serie, turma, endereco{}, lat, lng, status, risco, faltas, freq, contatos[], ... } }
+let activeFilters = { seg:'todos', st:'todos', risk:'todos', ct:'0', enc:new Set(), turma:'' };
+let mapaLeaflet=null, clusterLayer=null, heatLayer=null, mapMode='markers';
+let markersById = {};
+let roteiroSet = new Set();
+let selecionadoId = null;
+
+// ---------- Bootstrap a partir do alunosDB existente ----------
+function bootstrapAlunos() {
+  if (typeof alunosDB !== 'object') return;
+  Object.entries(alunosDB).forEach(([turma, nomes]) => {
+    nomes.forEach(nome => {
+      const id = slugId(nome+'_'+turma);
+      if (!alunosMap[id]) {
+        alunosMap[id] = {
+          id, nome, serie: turma, turma,
+          segmento: /Ano [ABC]$/.test(turma) || /ADM|DES/.test(turma) ? (/[123]º/.test(turma)?'medio':'fund') : 'fund',
+          endereco: {}, lat:null, lng:null, locConfirmada:false, ultAtualEnd:null,
+          status:'regular', risco:'baixo', faltas:0, freq:100,
+          contatos:[], visitas:[], encaminhamentos:[], tutor:'', viceDir:'', telResp:'',
+          ultContato:null, ultVisita:null, ultAcao:null
+        };
+      }
+    });
+  });
+}
+function slugId(s){return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'_').slice(0,80);}
+
+// ---------- Sync Firebase ----------
+function syncFromFirebase() {
+  if (!fbReady) return;
+  fbDB.ref('alunos').on('value', snap => {
+    const data = snap.val() || {};
+    Object.entries(data).forEach(([id,v]) => { alunosMap[id] = { ...alunosMap[id], ...v, id }; });
+    enriquecerComRegistros();
+    refreshMapa(); refreshStats(); refreshAlertas(); refreshBairros();
+  });
+}
+function pushAluno(a) {
+  if (!fbReady) return;
+  fbDB.ref('alunos/'+a.id).update({
+    nome:a.nome, serie:a.serie, turma:a.turma, segmento:a.segmento,
+    endereco:a.endereco||{}, lat:a.lat, lng:a.lng,
+    locConfirmada:!!a.locConfirmada, ultAtualEnd: a.ultAtualEnd||Date.now(),
+    tutor:a.tutor||'', viceDir:a.viceDir||'', telResp:a.telResp||''
+  });
+}
+
+// ---------- Enriquecer com registros do localStorage ----------
+function enriquecerComRegistros() {
+  try {
+    const regs = JSON.parse(localStorage.getItem('buscaAtiva_registros')||'[]');
+    regs.forEach(r => {
+      const id = slugId((r.aluno||'')+'_'+(r.turma||''));
+      const a = alunosMap[id]; if (!a) return;
+      a.contatos = a.contatos || [];
+      a.contatos.push({ data:r.data, tipo:r.tipoAcao||r.acao||'contato', detalhe:r.observacao||'', servidor:r.servidor||'' });
+      a.faltas = Math.max(a.faltas||0, Number(r.faltas)||0);
+      if (r.faltas) a.freq = Math.max(0, 100 - (Number(r.faltas)||0)*2);
+      a.ultContato = r.data;
+      a.ultAcao = r.tipoAcao || r.acao || 'Contato';
+      if (/visita/i.test(r.tipoAcao||r.acao||'')) { a.ultVisita = r.data; (a.visitas=a.visitas||[]).push({data:r.data}); }
+      if (/conselho|tutelar/i.test(r.tipoAcao||'')) (a.encaminhamentos=a.encaminhamentos||[]).push({tipo:'ct',data:r.data});
+      if (/rede|prote/i.test(r.tipoAcao||'')) (a.encaminhamentos=a.encaminhamentos||[]).push({tipo:'rp',data:r.data});
+      a.status = calcStatus(a);
+      a.risco = calcRisco(a);
+    });
+  } catch(e){}
+}
+function calcStatus(a){
+  if ((a.encaminhamentos||[]).some(e=>e.tipo==='rp')) return 'rede';
+  if (a.faltas>=20 || a.freq<60) return 'critico';
+  if (a.faltas>=10) return 'busca';
+  if (a.faltas>=5) return 'atencao';
+  if (a.encaminhamentos?.length && a.freq>=90) return 'encerrado';
+  return 'regular';
+}
+function calcRisco(a){
+  if (a.faltas>=15 || a.freq<70) return 'alto';
+  if (a.faltas>=7) return 'medio';
+  return 'baixo';
+}
+
+// ---------- IVTE: Índice Territorial de Vulnerabilidade Escolar (0-100) ----------
+function ivte(a){
+  const faltas = Math.min((a.faltas||0)*2, 30);
+  const freq = Math.max(0, 100-(a.freq||100))*0.3;
+  const semContato = ultContatoDias(a); const sc = Math.min(semContato, 60)*0.4;
+  const reinc = (a.contatos?.length||0)*1.2; const re = Math.min(reinc, 15);
+  const enc = (a.encaminhamentos?.length||0)*4; const en = Math.min(enc, 15);
+  const score = Math.min(100, Math.round(faltas+freq+sc+re+en));
+  return score;
+}
+function ultContatoDias(a){
+  if (!a.ultContato) return 999;
+  const d = new Date(a.ultContato.split('/').reverse().join('-'));
+  return Math.floor((Date.now()-d.getTime())/86400000) || 0;
+}
+
+// ---------- Geocodificação Nominatim ----------
+const NOMINATIM = 'https://nominatim.openstreetmap.org';
+let acTimer=null;
+async function autocompleteEndereco(input){
+  const q = input.value.trim();
+  const box = document.getElementById('cad-autocomplete');
+  if (q.length<3){ box.style.display='none'; return; }
+  clearTimeout(acTimer);
+  acTimer = setTimeout(async ()=>{
+    try {
+      const url = `${NOMINATIM}/search?format=json&addressdetails=1&limit=6&countrycodes=br&q=${encodeURIComponent(q+', São Paulo, Brasil')}`;
+      const r = await fetch(url, {headers:{'Accept-Language':'pt-BR'}});
+      const list = await r.json();
+      box.innerHTML = list.map((it,i)=>`<div onclick="escolherEndereco(${i})">${it.display_name}</div>`).join('');
+      box.style.display = list.length?'block':'none';
+      window._acResults = list;
+    } catch(e){ box.style.display='none'; }
+  }, 350);
+}
+function escolherEndereco(i){
+  const it = (window._acResults||[])[i]; if (!it) return;
+  const a = it.address || {};
+  document.getElementById('cad-logradouro').value = a.road || it.display_name.split(',')[0];
+  document.getElementById('cad-numero').value = a.house_number || document.getElementById('cad-numero').value;
+  document.getElementById('cad-bairro').value = a.suburb || a.neighbourhood || a.city_district || '';
+  document.getElementById('cad-cidade').value = a.city || a.town || a.municipality || 'São Paulo';
+  document.getElementById('cad-cep').value = a.postcode || '';
+  document.getElementById('cad-lat').value = it.lat;
+  document.getElementById('cad-lng').value = it.lon;
+  document.getElementById('cad-confirmado').checked = true;
+  document.getElementById('cad-autocomplete').style.display='none';
+}
+async function geocodificarAgora(){
+  const partes = [
+    document.getElementById('cad-logradouro').value,
+    document.getElementById('cad-numero').value,
+    document.getElementById('cad-bairro').value,
+    document.getElementById('cad-cidade').value || 'São Paulo',
+    document.getElementById('cad-cep').value
+  ].filter(Boolean).join(', ');
+  if (!partes.trim()) return alert('Preencha pelo menos o logradouro.');
+  const url = `${NOMINATIM}/search?format=json&limit=1&countrycodes=br&q=${encodeURIComponent(partes)}`;
+  const r = await fetch(url, {headers:{'Accept-Language':'pt-BR'}});
+  const list = await r.json();
+  if (!list.length) return alert('Endereço não localizado.');
+  document.getElementById('cad-lat').value = list[0].lat;
+  document.getElementById('cad-lng').value = list[0].lon;
+  document.getElementById('cad-confirmado').checked = true;
+  alert('Coordenadas obtidas: '+list[0].lat+', '+list[0].lon);
+}
+
+function enderecoString(a){
+  const e = a.endereco||{};
+  const partes = [e.logradouro, e.numero, e.bairro, e.cidade||'São Paulo', e.cep].filter(Boolean);
+  return partes.join(', ').trim();
+}
+async function geocodificarUm(a){
+  const q = enderecoString(a);
+  if (!q || q.length < 5) return false;
+  const url = `${NOMINATIM}/search?format=json&limit=1&countrycodes=br&q=${encodeURIComponent(q)}`;
+  try {
+    const r = await fetch(url, {headers:{'Accept-Language':'pt-BR'}});
+    const list = await r.json();
+    if (!list.length) return false;
+    a.lat = parseFloat(list[0].lat);
+    a.lng = parseFloat(list[0].lon);
+    a.locConfirmada = true;
+    a.ultAtualEnd = Date.now();
+    alunosMap[a.id] = a;
+    if (typeof pushAluno === 'function') pushAluno(a);
+    return true;
+  } catch(e){ return false; }
+}
+async function geocodificarTodos(){
+  const btn = document.getElementById('btnGeoLote');
+  const pendentes = Object.values(alunosMap).filter(a => (!a.lat||!a.lng) && enderecoString(a).length>5);
+  if (!pendentes.length){
+    const semEnd = Object.values(alunosMap).filter(a => !enderecoString(a) || enderecoString(a).length<=5).length;
+    alert(`Nenhum aluno pendente de geocodificação.\n\n${semEnd} aluno(s) sem endereço cadastrado — abra o cadastro do aluno e preencha o endereço primeiro.`);
+    return;
+  }
+  if (!confirm(`Geocodificar ${pendentes.length} aluno(s)?\n\nVai levar cerca de ${pendentes.length} segundo(s) (limite Nominatim: 1 req/s).`)) return;
+  btn.disabled = true;
+  let ok = 0, fail = 0;
+  for (let i=0; i<pendentes.length; i++){
+    const a = pendentes[i];
+    btn.textContent = `⏳ ${i+1}/${pendentes.length}...`;
+    const sucesso = await geocodificarUm(a);
+    if (sucesso) ok++; else fail++;
+    if (i % 5 === 0) refreshMapa();
+    await new Promise(r=>setTimeout(r, 1100));
+  }
+  refreshMapa();
+  btn.disabled = false;
+  btn.textContent = '🌐 Geocodificar todos';
+  alert(`Geocodificação concluída.\n✅ Sucesso: ${ok}\n❌ Falhas: ${fail}`);
+}
+function atualizarMapStatus(){
+  const el = document.getElementById('mapStatus'); if (!el) return;
+  const total = Object.keys(alunosMap).length;
+  const comCoord = Object.values(alunosMap).filter(a=>a.lat&&a.lng).length;
+  const semEnd = Object.values(alunosMap).filter(a=>!enderecoString(a)||enderecoString(a).length<=5).length;
+  el.innerHTML = `📍 <b>${comCoord}</b> / ${total} no mapa` +
+    (total-comCoord>0 ? ` · <span style="color:#dc2626">${total-comCoord} sem coordenadas</span>` : '') +
+    (semEnd>0 ? ` · <span style="color:#888">(${semEnd} sem endereço)</span>` : '');
+}
+
+// ---------- Hook cadastrarAluno ----------
+const _origCadastrar = typeof cadastrarAluno==='function' ? cadastrarAluno : null;
+window.cadastrarAluno = function(){
+  if (_origCadastrar) _origCadastrar();
+  const nome = (document.getElementById('cad-nome').value||'').trim().toUpperCase();
+  const turma = document.getElementById('cad-serie').value;
+  if (!nome || !turma) return;
+  const id = slugId(nome+'_'+turma);
+  const lat = parseFloat(document.getElementById('cad-lat').value)||null;
+  const lng = parseFloat(document.getElementById('cad-lng').value)||null;
+  const a = alunosMap[id] || { id, nome, serie:turma, turma, segmento:/[123]º/.test(turma)?'medio':'fund' };
+  a.endereco = {
+    logradouro: document.getElementById('cad-logradouro').value,
+    numero: document.getElementById('cad-numero').value,
+    complemento: document.getElementById('cad-complemento').value,
+    bairro: document.getElementById('cad-bairro').value,
+    cidade: document.getElementById('cad-cidade').value,
+    cep: document.getElementById('cad-cep').value
+  };
+  a.lat = lat; a.lng = lng;
+  a.locConfirmada = document.getElementById('cad-confirmado').checked;
+  a.ultAtualEnd = Date.now();
+  alunosMap[id] = a;
+  pushAluno(a);
+  refreshMapa();
+};
+
+// ---------- Filtros (chips) ----------
+document.addEventListener('click', e=>{
+  const chip = e.target.closest('.filter-chip'); if (!chip) return;
+  const f = chip.dataset.f, v = chip.dataset.v;
+  if (f==='enc') {
+    chip.classList.toggle('on');
+    if (activeFilters.enc.has(v)) activeFilters.enc.delete(v); else activeFilters.enc.add(v);
+  } else {
+    chip.parentElement.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('on'));
+    chip.classList.add('on');
+    activeFilters[f] = v;
+  }
+  aplicarFiltros();
+});
+function aplicarFiltros(){
+  activeFilters.turma = document.getElementById('filter-turma')?.value || '';
+  refreshMapa(); refreshStats(); refreshAlertas(); refreshBairros();
+}
+function passaFiltro(a){
+  if (activeFilters.seg!=='todos' && a.segmento!==activeFilters.seg) return false;
+  if (activeFilters.st!=='todos' && a.status!==activeFilters.st) return false;
+  if (activeFilters.risk!=='todos' && a.risco!==activeFilters.risk) return false;
+  if (activeFilters.turma && a.turma!==activeFilters.turma) return false;
+  const ct = parseInt(activeFilters.ct||'0'); if (ct>0 && ultContatoDias(a)<ct) return false;
+  if (activeFilters.enc.size) {
+    const has = (a.encaminhamentos||[]).map(e=>e.tipo);
+    for (const t of activeFilters.enc) if (!has.includes(t)) return false;
+  }
+  return true;
+}
+
+// ---------- Mapa Leaflet ----------
+const STATUS_COLOR = { regular:'#22c55e', atencao:'#facc15', busca:'#f97316', critico:'#dc2626', rede:'#1f2937', encerrado:'#3b82f6' };
+function initMapa(){
+  if (mapaLeaflet) { setTimeout(()=>mapaLeaflet.invalidateSize(), 50); return; }
+  mapaLeaflet = L.map('mapaTerritorial').setView([-23.55, -46.63], 13);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution:'© OpenStreetMap', maxZoom:19
+  }).addTo(mapaLeaflet);
+  clusterLayer = L.markerClusterGroup({
+    iconCreateFunction: c=>{
+      const n = c.getChildCount();
+      const cls = n>20?'crit':(n>10?'warn':'ok');
+      const bg = cls==='crit'?'#dc2626':(cls==='warn'?'#f97316':'#1a7a4a');
+      return L.divIcon({html:`<div style="background:${bg};color:white;border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-weight:700;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,.3)">${n}</div>`, className:'', iconSize:[40,40]});
+    }
+  });
+  mapaLeaflet.addLayer(clusterLayer);
+  refreshMapa();
+  popularTurmaSelect();
+}
+function popularTurmaSelect(){
+  const sel = document.getElementById('filter-turma'); if (!sel) return;
+  const turmas = [...new Set(Object.values(alunosMap).map(a=>a.turma))].sort();
+  sel.innerHTML = '<option value="">— Todas —</option>' + turmas.map(t=>`<option value="${t}">${t}</option>`).join('');
+}
+function setMapMode(m){
+  mapMode = m;
+  document.getElementById('modeMarkers').classList.toggle('on', m==='markers');
+  document.getElementById('modeHeat').classList.toggle('on', m==='heat');
+  refreshMapa();
+}
+function refreshMapa(){
+  if (!mapaLeaflet) return;
+  clusterLayer.clearLayers();
+  if (heatLayer){ mapaLeaflet.removeLayer(heatLayer); heatLayer=null; }
+  markersById = {};
+  const filtrados = Object.values(alunosMap).filter(a=>a.lat && a.lng && passaFiltro(a));
+  if (mapMode==='heat'){
+    const pts = filtrados.map(a=>{
+      let w = 0.3;
+      if (a.status==='atencao') w=0.5;
+      if (a.status==='busca') w=0.8;
+      if (a.status==='critico') w=1.0;
+      return [a.lat,a.lng,w];
+    });
+    heatLayer = L.heatLayer(pts, {radius:35, blur:25, maxZoom:17, gradient:{0.2:'#22c55e',0.5:'#facc15',0.8:'#f97316',1:'#dc2626'}}).addTo(mapaLeaflet);
+  } else {
+    filtrados.forEach(a=>{
+      const cor = STATUS_COLOR[a.status]||'#888';
+      const ic = L.divIcon({html:`<div style="background:${cor};width:18px;height:18px;border-radius:50%;border:3px solid white;box-shadow:0 2px 6px rgba(0,0,0,.4)"></div>`, className:'', iconSize:[18,18]});
+      const m = L.marker([a.lat,a.lng], {icon:ic});
+      m.bindPopup(popupHTML(a));
+      m.on('click', ()=>selecionarAluno(a.id));
+      clusterLayer.addLayer(m); markersById[a.id]=m;
+    });
+    if (filtrados.length){
+      try { mapaLeaflet.fitBounds(L.featureGroup(Object.values(markersById)).getBounds().pad(0.15)); } catch(e){}
+    }
+  }
+  atualizarMapStatus();
+}
+function popupHTML(a){
+  const ivt = ivte(a);
+  return `<div class="aluno-popup">
+    <h4>${a.nome}</h4>
+    <div class="row"><b>Turma:</b> ${a.turma||'-'} · <b>RA:</b> ${a.ra||'—'}</div>
+    <div class="row"><b>Status:</b> ${labelStatus(a.status)} · <b>Risco:</b> ${a.risco}</div>
+    <div class="row"><b>Faltas:</b> ${a.faltas||0} · <b>Freq:</b> ${a.freq||100}%</div>
+    <div class="row"><b>Último contato:</b> ${a.ultContato||'—'}</div>
+    <div class="row"><b>Tutor:</b> ${a.tutor||'—'}</div>
+    <div class="row"><b>Tel. resp.:</b> ${a.telResp||'—'}</div>
+    <div class="row"><b>IVTE:</b> ${ivt}/100</div>
+    <button onclick="abrirProntuario('${a.id}')">📋 Abrir Prontuário</button>
+    <button onclick="adicionarRoteiro('${a.id}')" style="background:var(--azul);margin-left:4px">+ Roteiro</button>
+  </div>`;
+}
+function labelStatus(s){return ({regular:'🟢 Regular',atencao:'🟡 Atenção',busca:'🟠 Busca Ativa',critico:'🔴 Crítico',rede:'⚫ Rede Proteção',encerrado:'🔵 Encerrado'})[s]||s;}
+
+function selecionarAluno(id){
+  selecionadoId = id;
+  const a = alunosMap[id]; if (!a) return;
+  const ivt = ivte(a);
+  const cor = ivt>=70?'#dc2626':ivt>=40?'#f97316':'#22c55e';
+  const tl = (a.contatos||[]).slice(-8).reverse().map(c=>`<div class="timeline-item"><span class="when">${c.data||''}</span><b>${c.tipo}</b> ${c.detalhe? '· '+c.detalhe:''}</div>`).join('') || '<div style="color:#888;font-size:12px">Sem histórico ainda.</div>';
+  document.getElementById('aluno-detalhes').innerHTML = `
+    <div style="background:var(--cinza-claro);padding:12px;border-radius:10px;margin-bottom:10px">
+      <b>${a.nome}</b><br>
+      <small>${a.turma||''} · ${a.endereco?.bairro||'Bairro —'}</small>
+      <div style="margin-top:8px"><small>IVTE: <b>${ivt}/100</b></small>
+        <div class="ivte-bar"><div class="ivte-fill" style="width:${ivt}%;background:${cor}"></div></div>
+      </div>
+    </div>
+    <h4>Linha do Tempo</h4>
+    <div class="timeline">${tl}</div>
+    <button class="btn btn-primary" style="width:100%;margin-top:10px" onclick="abrirProntuario('${id}')">📋 Prontuário Completo</button>
+  `;
+}
+function abrirProntuario(id){
+  const a = alunosMap[id]; if (!a) return;
+  showTab('historico');
+  setTimeout(()=>{ const inp = document.getElementById('buscaHistorico'); if (inp){ inp.value = a.nome; inp.dispatchEvent(new Event('input')); } }, 300);
+}
+
+// ---------- Estatísticas e alertas territoriais ----------
+function refreshStats(){
+  const lista = Object.values(alunosMap).filter(passaFiltro);
+  const total = lista.length;
+  const busca = lista.filter(a=>a.status==='busca'||a.status==='critico').length;
+  const crit = lista.filter(a=>a.status==='critico').length;
+  const visRealiz = lista.reduce((s,a)=>s+(a.visitas?.length||0),0);
+  const visPend = lista.filter(a=>['busca','critico'].includes(a.status) && !(a.visitas?.length)).length;
+  const enc = lista.filter(a=>(a.encaminhamentos||[]).length).length;
+  const freqMed = total? Math.round(lista.reduce((s,a)=>s+(a.freq||100),0)/total) : 0;
+  const ivtMed = total? Math.round(lista.reduce((s,a)=>s+ivte(a),0)/total) : 0;
+  document.getElementById('stats-territorial').innerHTML = `
+    <div class="stat-row"><span>Total alunos</span><strong>${total}</strong></div>
+    <div class="stat-row"><span>Em Busca Ativa</span><strong style="color:#f97316">${busca}</strong></div>
+    <div class="stat-row"><span>Em situação crítica</span><strong style="color:#dc2626">${crit}</strong></div>
+    <div class="stat-row"><span>Visitas realizadas</span><strong>${visRealiz}</strong></div>
+    <div class="stat-row"><span>Visitas pendentes</span><strong>${visPend}</strong></div>
+    <div class="stat-row"><span>Casos encaminhados</span><strong>${enc}</strong></div>
+    <div class="stat-row"><span>Frequência média</span><strong>${freqMed}%</strong></div>
+    <div class="stat-row"><span>IVTE médio</span><strong style="color:${ivtMed>=60?'#dc2626':ivtMed>=30?'#f97316':'#22c55e'}">${ivtMed}/100</strong></div>
+  `;
+}
+function refreshBairros(){
+  const lista = Object.values(alunosMap).filter(passaFiltro);
+  const grupos = {};
+  lista.forEach(a=>{
+    const b = a.endereco?.bairro || '— sem bairro —';
+    if (!grupos[b]) grupos[b] = {total:0, busca:0, crit:0, freq:[]};
+    grupos[b].total++;
+    if (a.status==='busca'||a.status==='critico') grupos[b].busca++;
+    if (a.status==='critico') grupos[b].crit++;
+    grupos[b].freq.push(a.freq||100);
+  });
+  const arr = Object.entries(grupos).sort((a,b)=>b[1].crit-a[1].crit||b[1].busca-a[1].busca).slice(0,12);
+  document.getElementById('bairros-list').innerHTML = arr.map(([b,d])=>{
+    const fm = Math.round(d.freq.reduce((s,x)=>s+x,0)/d.freq.length);
+    return `<div class="stat-row"><span>${b}</span><strong>${d.total} <span style="color:#f97316">·${d.busca}</span> <span style="color:#dc2626">·${d.crit}</span> <small style="color:#888">${fm}%</small></strong></div>`;
+  }).join('') || '<div style="color:#888;font-size:12px">Sem dados de bairros ainda.</div>';
+}
+function refreshAlertas(){
+  const lista = Object.values(alunosMap);
+  const alerts = [];
+  const byBairro = {};
+  lista.forEach(a=>{
+    const b = a.endereco?.bairro; if (!b) return;
+    (byBairro[b] = byBairro[b]||[]).push(a);
+  });
+  Object.entries(byBairro).forEach(([b, arr])=>{
+    const c = arr.filter(a=>a.status==='critico').length;
+    const ba = arr.filter(a=>a.status==='busca'||a.status==='critico').length;
+    if (c>=5) alerts.push({lvl:'crit', msg:`Há concentração elevada de casos críticos em <b>${b}</b> (${c} alunos).`});
+    if (ba>=10) alerts.push({lvl:'warn', msg:`Existem <b>${ba}</b> alunos em Busca Ativa no Bairro ${b}.`});
+  });
+  const semContato15 = lista.filter(a=>ultContatoDias(a)>=15 && a.status!=='regular').length;
+  if (semContato15>=5) alerts.push({lvl:'warn', msg:`Existem <b>${semContato15}</b> alunos sem contato há mais de 15 dias.`});
+  const semContato30 = lista.filter(a=>ultContatoDias(a)>=30 && a.status!=='regular').length;
+  if (semContato30>=3) alerts.push({lvl:'crit', msg:`Existem <b>${semContato30}</b> alunos sem contato há mais de 30 dias.`});
+  // mesma rua crítica
+  const byRua = {};
+  lista.filter(a=>a.status==='critico' && a.endereco?.logradouro).forEach(a=>{
+    const k = a.endereco.logradouro+'|'+(a.endereco.bairro||'');
+    (byRua[k]=byRua[k]||[]).push(a);
+  });
+  Object.entries(byRua).forEach(([k,arr])=>{ if (arr.length>=3) alerts.push({lvl:'crit', msg:`Há ${arr.length} alunos em situação crítica em <b>${k.split('|')[0]}</b>.`}); });
+  if (!alerts.length) alerts.push({lvl:'info', msg:'Nenhum alerta crítico no momento. Continue o monitoramento.'});
+  document.getElementById('alertas-territoriais').innerHTML = alerts.slice(0,8).map(a=>`<div class="alert-card ${a.lvl}">${a.msg}</div>`).join('');
+}
+
+// ---------- Roteiro de Visitas ----------
+function adicionarRoteiro(id){
+  roteiroSet.add(id); renderRoteiro();
+}
+function limparRoteiro(){ roteiroSet.clear(); renderRoteiro(); }
+function renderRoteiro(){
+  const list = [...roteiroSet].map(id=>alunosMap[id]).filter(Boolean);
+  document.getElementById('roteiro-list').innerHTML = list.length
+    ? list.map((a,i)=>`<div style="display:flex;justify-content:space-between;padding:4px 0"><span>${i+1}. ${a.nome.split(' ').slice(0,3).join(' ')}</span><a href="#" onclick="roteiroSet.delete('${a.id}');renderRoteiro();return false">×</a></div>`).join('')
+    : '<i style="color:#888">Nenhum aluno selecionado.</i>';
+}
+function gerarRoteiro(){
+  const pts = [...roteiroSet].map(id=>alunosMap[id]).filter(a=>a && a.lat && a.lng);
+  if (pts.length<2) return alert('Selecione pelo menos 2 alunos com endereço.');
+  // Nearest-neighbor ordering
+  const ord = [pts.shift()];
+  while (pts.length){
+    const last = ord[ord.length-1];
+    let bi=0, bd=Infinity;
+    pts.forEach((p,i)=>{ const d=haversine(last.lat,last.lng,p.lat,p.lng); if (d<bd){bd=d;bi=i;} });
+    ord.push(pts.splice(bi,1)[0]);
+  }
+  // Distance + draw polyline
+  let dist=0;
+  const latlngs = ord.map(p=>[p.lat,p.lng]);
+  for (let i=1;i<latlngs.length;i++) dist+=haversine(...latlngs[i-1],...latlngs[i]);
+  if (window._rotePoly) mapaLeaflet.removeLayer(window._rotePoly);
+  window._rotePoly = L.polyline(latlngs, {color:'#1d4ed8', weight:5, opacity:0.8, dashArray:'8 6'}).addTo(mapaLeaflet);
+  mapaLeaflet.fitBounds(window._rotePoly.getBounds().pad(0.2));
+  const tempo = Math.round(dist/30*60 + ord.length*15); // 30km/h + 15min/visita
+  const html = `<h3>🚐 Roteiro de Visitas</h3><p>Distância total: <b>${dist.toFixed(2)} km</b> · Tempo estimado: <b>${tempo} min</b></p><ol>${ord.map(p=>`<li><b>${p.nome}</b> — ${p.endereco?.logradouro||''} ${p.endereco?.numero||''}, ${p.endereco?.bairro||''}</li>`).join('')}</ol>`;
+  const w = window.open('','_blank'); w.document.write('<title>Roteiro</title><style>body{font-family:DM Sans,sans-serif;padding:30px;max-width:800px;margin:auto}</style>'+html+'<button onclick="print()">🖨 Imprimir</button>'); w.document.close();
+}
+function haversine(lat1,lon1,lat2,lon2){
+  const R=6371, toR=x=>x*Math.PI/180;
+  const dLat=toR(lat2-lat1), dLon=toR(lon2-lon1);
+  const a=Math.sin(dLat/2)**2+Math.cos(toR(lat1))*Math.cos(toR(lat2))*Math.sin(dLon/2)**2;
+  return 2*R*Math.asin(Math.sqrt(a));
+}
+
+// ---------- Exportações ----------
+async function exportMapaImg(){
+  const el = document.getElementById('mapaTerritorial');
+  const c = await html2canvas(el, {useCORS:true});
+  const link = document.createElement('a'); link.download = 'mapa_territorial.png'; link.href = c.toDataURL(); link.click();
+}
+async function exportMapaPDF(){
+  const el = document.getElementById('mapaTerritorial');
+  const c = await html2canvas(el, {useCORS:true});
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF({orientation:'landscape', unit:'mm', format:'a4'});
+  pdf.setFontSize(14); pdf.text('Mapa Territorial — Busca Ativa', 14, 12);
+  pdf.addImage(c.toDataURL('image/png'), 'PNG', 10, 18, 277, 170);
+  pdf.save('mapa_territorial.pdf');
+}
+function exportRelXLSX(){
+  const rows = Object.values(alunosMap).filter(passaFiltro).map(a=>({
+    Nome:a.nome, Turma:a.turma, Status:a.status, Risco:a.risco, Faltas:a.faltas||0, Freq:a.freq||100,
+    Bairro:a.endereco?.bairro||'', Rua:a.endereco?.logradouro||'', Num:a.endereco?.numero||'',
+    Tutor:a.tutor||'', UltContato:a.ultContato||'', IVTE:ivte(a)
+  }));
+  const ws = XLSX.utils.json_to_sheet(rows);
+  const wb = XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb, ws, 'Alunos');
+  XLSX.writeFile(wb, 'relatorio_territorial.xlsx');
+}
+
+// ---------- Hook showTab para inicializar mapa ----------
+const _origShowTab = window.showTab;
+window.showTab = function(tab){
+  _origShowTab(tab);
+  if (tab==='mapa') setTimeout(initMapa, 80);
+};
+
+// ---------- Inicialização ----------
+window.addEventListener('load', ()=>{
+  bootstrapAlunos();
+  enriquecerComRegistros();
+  syncFromFirebase();
+  // refresh painéis periódicos
+  setInterval(()=>{ enriquecerComRegistros(); if (document.getElementById('page-mapa').classList.contains('active')) { refreshStats(); refreshAlertas(); refreshBairros(); } }, 30000);
+});
+
 </script>
 </body>
 </html>
